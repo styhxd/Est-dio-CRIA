@@ -1,137 +1,109 @@
 import { 
-  Palette, 
-  Clapperboard, 
-  Glasses, 
-  Bot, 
-  Globe, 
+  Mic2, 
   Music, 
-  Layout, 
-  Users, 
-  Target, 
+  Sliders, 
+  Speaker, 
+  Radio, 
+  Headphones, 
+  Disc, 
+  Mic, 
   Zap,
   Briefcase,
   MapPin,
   HelpCircle,
   Sparkles,
   GraduationCap,
-  PlayCircle,
-  BookOpen,
+  BarChart3,
+  Globe,
+  Users,
+  Target,
   Wand2,
-  PenTool,
-  Image as ImageIcon,
-  Mic2
+  BoomBox
 } from 'lucide-react';
-import { Service, Project, Client, ProjectCategory } from './types';
+import { Service, Project, Client, ProjectCategory, PageView } from './types';
 
-// Navigation Content for Mega Menus
+// Updated Navigation Content for Pages
 export const NAV_CONTENT = {
   sobre: [
     {
-      title: 'O Manifesto',
-      description: 'Nossa filosofia criativa.',
-      href: '#manifesto',
+      title: 'Identidade Sonora',
+      description: 'Nossa filosofia de áudio.',
+      page: 'about',
       icon: Target
     },
     {
-      title: 'Metodologia',
-      description: 'Do caos à arte: nosso processo.',
-      href: '#methodology',
+      title: 'Workflow',
+      description: 'Do Rec ao Play: nosso processo.',
+      page: 'about',
       icon: Sparkles
     },
     {
-      title: 'Nossos Clientes',
-      description: 'Quem confia na nossa visão.',
-      href: '#clients',
+      title: 'Artistas & Selos',
+      description: 'Quem grava com a gente.',
+      page: 'about',
       icon: Users
     },
     {
-      title: 'Educação',
-      description: 'Workshops e masterclasses.',
-      href: '#education',
+      title: 'Mentoria de Áudio',
+      description: 'Workshops de Mix e Produção.',
+      page: 'about',
       icon: GraduationCap
-    },
-    {
-      title: 'Carreiras',
-      description: 'Faça parte do time.',
-      href: '#careers',
-      icon: Briefcase
     }
   ],
   portfolio: [
     {
-      title: 'Showreel Geral',
-      description: 'Um mix de tudo que fazemos.',
-      href: '#portfolio', 
-      icon: PlayCircle,
+      title: 'Discografia Completa',
+      description: 'Nossos últimos lançamentos.',
+      page: 'portfolio', 
+      icon: Disc,
       category: 'All' as ProjectCategory
     },
     {
-      title: 'Animação & Motion',
-      description: '2D e Motion Graphics.',
-      href: '#portfolio',
-      icon: Clapperboard,
-      category: 'Animation' as ProjectCategory
+      title: 'Trap & Drill',
+      description: 'Graves 808 e hi-hats rápidos.',
+      page: 'portfolio',
+      icon: Zap,
+      category: 'Trap' as ProjectCategory
     },
     {
-      title: 'Produção Musical',
-      description: 'Beats, Gravação e Lançamento.',
-      href: '#portfolio',
+      title: 'Funk Consciente/Mandelão',
+      description: 'A batida que domina o Brasil.',
+      page: 'portfolio',
+      icon: BoomBox,
+      category: 'Funk' as ProjectCategory
+    },
+    {
+      title: 'Hip Hop & Boombap',
+      description: 'Beats clássicos e lírica.',
+      page: 'portfolio',
+      icon: Mic2,
+      category: 'Hip Hop' as ProjectCategory
+    },
+    {
+      title: 'Pop & Mainstream',
+      description: 'Produções para o topo das paradas.',
+      page: 'portfolio',
       icon: Music,
-      category: 'Music' as ProjectCategory
-    },
-    {
-      title: 'Design & Branding',
-      description: 'Identidade visual completa.',
-      href: '#portfolio',
-      icon: Layout,
-      category: 'Design' as ProjectCategory
-    },
-    {
-      title: 'Ilustração Digital',
-      description: 'Personagens, Capas e NFTs.',
-      href: '#portfolio',
-      icon: PenTool,
-      category: 'Illustration' as ProjectCategory
-    },
-    {
-      title: 'Editorial & Livros',
-      description: 'Publique sua obra.',
-      href: '#portfolio',
-      icon: BookOpen,
-      category: 'Editorial' as ProjectCategory
-    },
-    {
-      title: 'Web & Digital',
-      description: 'Sites e E-commerce.',
-      href: '#portfolio',
-      icon: Globe,
-      category: 'Web' as ProjectCategory
-    },
-    {
-      title: 'Restauração',
-      description: 'Recuperação de memórias.',
-      href: '#portfolio',
-      icon: Wand2,
-      category: 'Restoration' as ProjectCategory
+      category: 'Pop' as ProjectCategory
     }
   ],
   contato: [
     {
-      title: 'Iniciar Projeto',
-      description: 'Vamos construir algo incrível juntos.',
-      href: '#contact',
-      icon: Zap
+      title: 'Agendar Sessão',
+      description: 'Reserve o estúdio agora.',
+      page: 'contact',
+      icon: Mic
     },
     {
       title: 'Dúvidas Frequentes',
-      description: 'Entenda como trabalhamos.',
-      href: '#faq',
+      description: 'Equipamentos e processos.',
+      page: 'contact',
       icon: HelpCircle
     },
     {
       title: 'Localização',
-      description: 'Onde a mágica acontece.',
-      href: '#location',
+      description: 'Onde o som acontece.',
+      page: 'contact',
       icon: MapPin
     }
   ]
@@ -140,58 +112,58 @@ export const NAV_CONTENT = {
 export const SERVICES: Service[] = [
   {
     id: 's1',
-    title: 'Ilustração Digital',
-    description: 'Criação de capas para livros, design de personagens, mascotes digitais, NFTs e estampas exclusivas para merchandising.',
-    icon: Palette,
+    title: 'Gravação & Captação',
+    description: 'Sala tratada acusticamente, microfones valvulados e pré-amplificadores de classe A para capturar a melhor performance da sua voz ou instrumento.',
+    icon: Mic2,
     highlightColor: 'art',
   },
   {
     id: 's2',
-    title: 'Produção Musical',
-    description: 'Gravação remota, produção completa, catálogo de beats exclusivos e assessoria para lançar sua música nas plataformas.',
-    icon: Mic2,
+    title: 'Produção de Beat (Trap/Funk)',
+    description: 'Criação de instrumentais exclusivos. Do 150BPM ao Trap melódico, nossos beatmakers criam a base perfeita para sua letra.',
+    icon: Music,
     highlightColor: 'tech',
   },
   {
     id: 's3',
-    title: 'Vídeos & Audiovisual',
-    description: 'Captação, edição, roteirização para influencers e publicidade. Transformamos raw footage em narrativa.',
-    icon: Clapperboard,
-    highlightColor: 'tech',
-  },
-  {
-    id: 's4',
-    title: 'Design Gráfico',
-    description: 'Logotipos, identidade visual completa, flyers, cartões e materiais promocionais de alto impacto.',
-    icon: Layout,
+    title: 'Mixagem Profissional',
+    description: 'Equilíbrio, profundidade e clareza. Utilizamos o melhor do mundo analógico e digital para dar o peso que sua música precisa.',
+    icon: Sliders,
     highlightColor: 'cyan',
   },
   {
+    id: 's4',
+    title: 'Masterização',
+    description: 'O polimento final. Garantimos que sua música soe alto e competitiva em todas as plataformas (Spotify, Apple Music, YouTube).',
+    icon: Speaker,
+    highlightColor: 'tech',
+  },
+  {
     id: 's5',
-    title: 'Web Design',
-    description: 'Criação de sites institucionais, e-commerce, Landing Pages de alta conversão, hospedagem e otimização SEO.',
+    title: 'Distribuição Digital',
+    description: 'Lançamos sua música em +150 plataformas digitais, cuidamos do ISRC e gerenciamos seus royalties.',
     icon: Globe,
     highlightColor: 'cyan',
   },
   {
     id: 's6',
-    title: 'Restauração & Edição',
-    description: 'Recuperação de fotos antigas, colorização, manipulação artística, retoque profissional e remoção de elementos indesejados.',
+    title: 'Restauro de Áudio',
+    description: 'Limpeza de ruídos, remoção de crackles e pops, e recuperação de gravações antigas ou danificadas.',
     icon: Wand2,
     highlightColor: 'art',
   },
   {
     id: 's7',
-    title: 'Publicação Editorial',
-    description: 'Diagramação, design de capa, revisão textual, registro ISBN e distribuição em plataformas digitais e impressas.',
-    icon: BookOpen,
+    title: 'Marketing Musical',
+    description: 'Estratégia de lançamento, Pitching para playlists editoriais e gestão de tráfego pago para artistas.',
+    icon: BarChart3,
     highlightColor: 'tech',
   },
   {
     id: 's8',
-    title: 'Animação 2D',
-    description: 'Motion Graphics, vídeos explicativos, personagens animados e conteúdo dinâmico para redes sociais.',
-    icon: PlayCircle,
+    title: 'Sound Design & SFX',
+    description: 'Criação de efeitos sonoros, foley e trilhas originais para games, cinema e publicidade.',
+    icon: Radio,
     highlightColor: 'art',
   },
 ];
@@ -199,67 +171,67 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
   {
     id: 'p1',
-    title: 'Coleção: Lendas Urbanas',
-    client: 'Editora Aurora',
-    category: 'Illustration',
-    imageUrl: 'https://picsum.photos/800/600?random=1',
+    title: 'Single: "Noite de Baile"',
+    client: 'MC Jotta',
+    category: 'Funk',
+    imageUrl: 'https://images.unsplash.com/photo-1571266028243-371695039353?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: 'p2',
-    title: 'Single: "Noite Neon"',
-    client: 'MC Jota',
-    category: 'Music',
-    imageUrl: 'https://picsum.photos/800/800?random=2',
+    title: 'Álbum: "Ouro & Prata"',
+    client: 'Lil Z',
+    category: 'Trap',
+    imageUrl: 'https://images.unsplash.com/photo-1517400508447-f8dd518b86db?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: 'p3',
-    title: 'Campanha de Verão',
-    client: 'Moda Praia Co.',
-    category: 'Video',
-    imageUrl: 'https://picsum.photos/800/600?random=3',
+    title: 'EP: "Ritmo de Rua"',
+    client: 'DJ K',
+    category: 'Funk',
+    imageUrl: 'https://images.unsplash.com/photo-1621360841013-c768371e93cf?q=80&w=2548&auto=format&fit=crop',
   },
   {
     id: 'p4',
-    title: 'Identidade Visual',
-    client: 'TechStart Solutions',
-    category: 'Design',
-    imageUrl: 'https://picsum.photos/800/500?random=4',
+    title: 'Single: "Vibe Alta"',
+    client: 'Trapper X',
+    category: 'Trap',
+    imageUrl: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: 'p5',
-    title: 'E-commerce Deluxe',
-    client: 'Boutique Z',
-    category: 'Web',
-    imageUrl: 'https://picsum.photos/800/800?random=5',
+    title: 'Álbum: "Vozes da Rua"',
+    client: 'MC Kael',
+    category: 'Hip Hop',
+    imageUrl: 'https://picsum.photos/800/600?random=10',
   },
   {
     id: 'p6',
-    title: 'Acervo Histórico 1950',
-    client: 'Museu da Cidade',
-    category: 'Restoration',
-    imageUrl: 'https://picsum.photos/800/600?random=6',
+    title: 'Single: "Neon Lights"',
+    client: 'Luna Pop',
+    category: 'Pop',
+    imageUrl: 'https://picsum.photos/800/800?random=11',
   },
   {
     id: 'p7',
-    title: 'Livro: O Caminho',
-    client: 'Autor Independente',
-    category: 'Editorial',
-    imageUrl: 'https://picsum.photos/800/600?random=7',
+    title: 'Masterização: "Ecos"',
+    client: 'Banda Aurora',
+    category: 'Mix & Master',
+    imageUrl: 'https://picsum.photos/800/500?random=13',
   },
   {
     id: 'p8',
-    title: 'Explainer Video APP',
-    client: 'Fintech Go',
-    category: 'Animation',
-    imageUrl: 'https://picsum.photos/800/600?random=8',
+    title: 'Acústico: "Raízes"',
+    client: 'Ana Clara',
+    category: 'MPB',
+    imageUrl: 'https://picsum.photos/800/600?random=16',
   }
 ];
 
 export const CLIENTS: Client[] = [
-  { id: 'c1', name: 'Coletivo Coqueiro', logoPlaceholder: 'CC' },
-  { id: 'c2', name: 'Club du Hotel', logoPlaceholder: 'CH' },
-  { id: 'c3', name: 'Kazuri', logoPlaceholder: 'KZ' },
-  { id: 'c4', name: "Germano's", logoPlaceholder: 'GS' },
-  { id: 'c5', name: 'Insanos Populares', logoPlaceholder: 'IP' },
-  { id: 'c6', name: 'Vulneráveis Venceremos', logoPlaceholder: 'VV' },
+  { id: 'c1', name: 'Sony Music', logoPlaceholder: 'SM' },
+  { id: 'c2', name: 'GR6 Explode', logoPlaceholder: 'GR6' },
+  { id: 'c3', name: 'Kondzilla', logoPlaceholder: 'KZ' },
+  { id: 'c4', name: "Love Funk", logoPlaceholder: 'LF' },
+  { id: 'c5', name: 'Mainstreet', logoPlaceholder: 'MS' },
+  { id: 'c6', name: 'ONErpm', logoPlaceholder: 'OR' },
 ];

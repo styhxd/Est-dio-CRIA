@@ -59,10 +59,10 @@ const ServicesGrid: React.FC = () => {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto border-t border-white/5 pt-12"
         >
-          <span className="text-primary-tech font-bold tracking-wider uppercase text-sm mb-3 block">Ecossistema Digital</span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Soluções Criativas 360 Graus</h2>
+          <span className="text-primary-tech font-bold tracking-wider uppercase text-sm mb-3 block">Sua Carreira 360º</span>
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Tudo O Que Sua Música Precisa</h2>
           <p className="text-gray-400 text-lg">
-            Um ecossistema completo. Da música à ilustração, do código à publicação editorial. Tudo em um só lugar para alavancar sua marca.
+            Da composição à capa do álbum, do upload no Spotify à estratégia de marketing. Centralize sua carreira artística no Estúdio CRIA e foque no que importa: sua música.
           </p>
         </motion.div>
 

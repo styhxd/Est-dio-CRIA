@@ -1,58 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES, NAV_CONTENT } from '../constants';
-import { ProjectCategory } from '../types';
+import { ProjectCategory, PageView } from '../types';
 
 interface NavbarProps {
+  onNavigate: (page: PageView) => void;
+  currentPage: PageView;
   onNavigatePortfolio: (category: ProjectCategory) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePortfolio }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
-  useEffect(() => {
-    const handleScrollListener = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScrollListener);
-    return () => window.removeEventListener('scroll', handleScrollListener);
-  }, []);
-
   const navLinks = [
-    { name: 'Início', href: '#hero', hasSubmenu: false },
-    { name: 'Sobre', href: '#manifesto', hasSubmenu: true },
-    { name: 'Serviços', href: '#services', hasSubmenu: true },
-    { name: 'Portfólio', href: '#portfolio', hasSubmenu: true },
-    { name: 'Contato', href: '#contact', hasSubmenu: true },
+    { name: 'Início', page: 'home' as PageView, hasSubmenu: false },
+    { name: 'Sobre', page: 'about' as PageView, hasSubmenu: true },
+    { name: 'Serviços', page: 'services' as PageView, hasSubmenu: true },
+    { name: 'Portfólio', page: 'portfolio' as PageView, hasSubmenu: true },
+    { name: 'Contato', page: 'contact' as PageView, hasSubmenu: true },
   ];
 
-  // Robust smooth scroll handler
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    
-    if (!href || href === '#') return;
-
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    } else {
-        console.warn(`Target element "${targetId}" not found.`);
-    }
-    
-    // Close menus
+  const handleNavigation = (page: PageView) => {
+    onNavigate(page);
     setIsMobileMenuOpen(false);
     setHoveredLink(null);
     setMobileExpanded(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const renderMegaMenuContent = (linkName: string) => {
@@ -60,10 +36,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
       return (
         <div className="grid grid-cols-2 gap-4">
           {SERVICES.map((service) => (
-            <a
+            <div
               key={service.id}
-              href={`#${service.id}`}
-              onClick={(e) => handleScroll(e, `#${service.id}`)}
+              onClick={() => handleNavigation('services')}
               className="group flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5 cursor-pointer"
             >
               <div className={`p-2 rounded-lg bg-layer border border-white/10 group-hover:border-${service.highlightColor === 'cyan' ? 'accent-cyan' : `primary-${service.highlightColor}`} transition-colors`}>
@@ -80,7 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
                 </h5>
                 <p className="text-xs text-gray-500 line-clamp-1">{service.description}</p>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       );
@@ -93,10 +68,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
                  <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">A Agência</h4>
                  <div className="grid grid-cols-1 gap-2">
                     {NAV_CONTENT.sobre.map((item) => (
-                        <a 
+                        <div 
                           key={item.title} 
-                          href={item.href} 
-                          onClick={(e) => handleScroll(e, item.href)}
+                          onClick={() => handleNavigation('about')}
                           className="group flex items-center gap-3 p-3 hover:bg-white/5 rounded-lg transition-colors border border-transparent hover:border-white/5 cursor-pointer"
                         >
                             <div className="text-primary-art group-hover:text-white transition-colors bg-white/5 p-2 rounded-md">
@@ -106,7 +80,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
                                 <div className="font-bold text-white text-sm group-hover:text-primary-art transition-colors">{item.title}</div>
                                 <div className="text-xs text-gray-500">{item.description}</div>
                             </div>
-                        </a>
+                        </div>
                     ))}
                  </div>
             </div>
@@ -116,7 +90,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
                 <div className="relative z-20">
                     <h5 className="text-white font-bold mb-1">Cultura CRIA</h5>
                     <p className="text-xs text-gray-300 mb-3">Conheça os bastidores da nossa criatividade.</p>
-                    <a href="#manifesto" onClick={(e) => handleScroll(e, '#manifesto')} className="text-xs font-bold text-primary-tech hover:text-white transition-colors flex items-center gap-1 cursor-pointer">Saiba mais <ArrowRight size={10} /></a>
+                    <button onClick={() => handleNavigation('about')} className="text-xs font-bold text-primary-tech hover:text-white transition-colors flex items-center gap-1 cursor-pointer">Saiba mais <ArrowRight size={10} /></button>
                 </div>
             </div>
         </div>
@@ -127,11 +101,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
         return (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {NAV_CONTENT.portfolio.map((item, index) => (
-                    <a 
+                    <div 
                         key={item.title} 
-                        href={item.href} 
-                        onClick={(e) => {
-                            handleScroll(e, item.href);
+                        onClick={() => {
+                            handleNavigation('portfolio');
                             if (item.category) onNavigatePortfolio(item.category as ProjectCategory);
                         }}
                         className={`group p-4 rounded-xl bg-layer border border-white/10 hover:border-primary-tech/50 hover:bg-white/5 transition-all text-center flex flex-col items-center justify-center cursor-pointer ${index === 0 ? 'bg-primary-tech/10 border-primary-tech/30' : ''}`}
@@ -140,7 +113,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
                             <item.icon size={20} />
                         </div>
                         <h5 className="font-bold text-white text-xs mb-1">{item.title}</h5>
-                    </a>
+                    </div>
                 ))}
             </div>
         )
@@ -150,10 +123,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
         return (
             <div className="grid grid-cols-3 gap-6">
                 {NAV_CONTENT.contato.map((item) => (
-                    <a 
+                    <div 
                       key={item.title} 
-                      href={item.href} 
-                      onClick={(e) => handleScroll(e, item.href)}
+                      onClick={() => handleNavigation('contact')}
                       className="group p-6 rounded-xl bg-layer border border-white/10 hover:border-accent-cyan/50 hover:bg-white/5 transition-all flex flex-col items-start cursor-pointer"
                     >
                         <div className="mb-4 p-3 rounded-lg bg-accent-cyan/10 text-accent-cyan group-hover:scale-110 transition-transform">
@@ -164,7 +136,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
                         <span className="text-xs font-bold text-accent-cyan flex items-center gap-1 uppercase tracking-wider group-hover:gap-2 transition-all">
                             Acessar <ArrowRight size={12} />
                         </span>
-                    </a>
+                    </div>
                 ))}
             </div>
         )
@@ -175,16 +147,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-obsidian/80 backdrop-blur-lg border-b border-white/5 py-3' : 'bg-transparent py-6'
-      }`}
+      className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-obsidian/90 backdrop-blur-lg border-b border-white/5 py-4"
       onMouseLeave={() => setHoveredLink(null)}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
         {/* Logo */}
-        <a href="#hero" onClick={(e) => handleScroll(e, '#hero')} className="text-2xl font-display font-bold tracking-tighter relative z-50 cursor-pointer">
+        <button onClick={() => handleNavigation('home')} className="text-2xl font-display font-bold tracking-tighter relative z-50 cursor-pointer">
           ESTÚDIO<span className="text-primary-tech">CRIA</span>
-        </a>
+        </button>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
@@ -194,24 +164,22 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
               className="relative py-4"
               onMouseEnter={() => link.hasSubmenu && setHoveredLink(link.name)}
             >
-              <a
-                href={link.href}
-                onClick={(e) => !link.hasSubmenu && handleScroll(e, link.href)}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group flex items-center gap-1 cursor-pointer"
+              <button
+                onClick={() => handleNavigation(link.page)}
+                className={`text-sm font-medium transition-colors relative group flex items-center gap-1 cursor-pointer ${currentPage === link.page ? 'text-white' : 'text-gray-400 hover:text-white'}`}
               >
                 {link.name}
                 {link.hasSubmenu && <ChevronDown size={14} className={`transition-transform duration-300 ${hoveredLink === link.name ? 'rotate-180' : ''}`} />}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-tech to-primary-art group-hover:w-full transition-all duration-300" />
-              </a>
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary-tech to-primary-art transition-all duration-300 ${currentPage === link.page ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+              </button>
             </div>
           ))}
-          <a
-            href="#newsletter"
-            onClick={(e) => handleScroll(e, '#newsletter')}
-            className="px-5 py-2 bg-layer border border-white/10 rounded-full text-sm font-medium hover:border-primary-art/50 hover:bg-primary-art/10 transition-all duration-300 cursor-pointer"
+          <button
+            onClick={() => handleNavigation('clube')}
+            className={`px-5 py-2 border rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${currentPage === 'clube' ? 'bg-primary-art/20 border-primary-art text-white' : 'bg-layer border-white/10 text-gray-300 hover:border-primary-art/50 hover:bg-primary-art/10'}`}
           >
             Clube CRIA
-          </a>
+          </button>
         </nav>
 
         {/* Mobile Toggle */}
@@ -255,16 +223,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
               {navLinks.map((link) => (
                 <div key={link.name} className="border-b border-white/5 pb-4 last:border-0">
                   <div className="flex items-center justify-between">
-                    <a
-                      href={link.href}
-                      onClick={(e) => {
-                          if(!link.hasSubmenu) handleScroll(e, link.href);
-                          else setMobileExpanded(mobileExpanded === link.name ? null : link.name);
-                      }}
-                      className="text-2xl font-display font-bold text-white cursor-pointer"
+                    <button
+                      onClick={() => handleNavigation(link.page)}
+                      className={`text-2xl font-display font-bold cursor-pointer ${currentPage === link.page ? 'text-white' : 'text-gray-400'}`}
                     >
                       {link.name}
-                    </a>
+                    </button>
                     {link.hasSubmenu && (
                       <button 
                         onClick={() => setMobileExpanded(mobileExpanded === link.name ? null : link.name)}
@@ -286,50 +250,46 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
                           className="mt-4 pl-4 space-y-4 overflow-hidden"
                         >
                           {link.name === 'Serviços' && SERVICES.map((service) => (
-                            <a 
+                            <div 
                               key={service.id} 
-                              href={`#${service.id}`} 
-                              onClick={(e) => handleScroll(e, `#${service.id}`)} 
+                              onClick={() => handleNavigation('services')} 
                               className="flex items-center gap-3 text-gray-400 hover:text-primary-tech cursor-pointer"
                             >
                               <service.icon size={16} /> <span className="text-sm">{service.title}</span>
-                            </a>
+                            </div>
                           ))}
                           
                           {link.name === 'Sobre' && NAV_CONTENT.sobre.map((item) => (
-                              <a 
+                              <div 
                                 key={item.title} 
-                                href={item.href} 
-                                onClick={(e) => handleScroll(e, item.href)} 
+                                onClick={() => handleNavigation('about')} 
                                 className="flex items-center gap-3 text-gray-400 hover:text-primary-art cursor-pointer"
                               >
                                   <item.icon size={16} /> <span className="text-sm">{item.title}</span>
-                              </a>
+                              </div>
                           ))}
 
                           {link.name === 'Portfólio' && NAV_CONTENT.portfolio.map((item) => (
-                              <a 
+                              <div 
                                 key={item.title} 
-                                href={item.href} 
-                                onClick={(e) => {
-                                    handleScroll(e, item.href);
+                                onClick={() => {
+                                    handleNavigation('portfolio');
                                     if (item.category) onNavigatePortfolio(item.category as ProjectCategory);
                                 }} 
                                 className="flex items-center gap-3 text-gray-400 hover:text-primary-tech cursor-pointer"
                               >
                                   <item.icon size={16} /> <span className="text-sm">{item.title}</span>
-                              </a>
+                              </div>
                           ))}
 
                           {link.name === 'Contato' && NAV_CONTENT.contato.map((item) => (
-                              <a 
+                              <div 
                                 key={item.title} 
-                                href={item.href} 
-                                onClick={(e) => handleScroll(e, item.href)} 
+                                onClick={() => handleNavigation('contact')} 
                                 className="flex items-center gap-3 text-gray-400 hover:text-accent-cyan cursor-pointer"
                               >
                                   <item.icon size={16} /> <span className="text-sm">{item.title}</span>
-                              </a>
+                              </div>
                           ))}
                         </motion.div>
                       )}
@@ -337,13 +297,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigatePortfolio }) => {
                   )}
                 </div>
               ))}
-              <a
-                href="#newsletter"
-                onClick={(e) => handleScroll(e, '#newsletter')}
+              <button
+                onClick={() => handleNavigation('clube')}
                 className="text-lg font-medium text-primary-art text-center mt-4 border border-primary-art/30 rounded-full py-3 cursor-pointer"
               >
                 Clube CRIA
-              </a>
+              </button>
             </nav>
           </motion.div>
         )}

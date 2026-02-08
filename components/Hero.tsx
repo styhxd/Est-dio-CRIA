@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Mic2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-obsidian">
-      {/* Background Ambience */}
+      {/* Background Ambience - Adjusted to look more like 'sound waves' */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary-tech/20 rounded-full blur-[120px] animate-float" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-primary-art/10 rounded-full blur-[120px] animate-float" style={{ animationDelay: '2s' }} />
@@ -32,17 +32,17 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-6 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            <span className="text-xs font-medium text-gray-300 uppercase tracking-wider">Agenda Aberta 2025</span>
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_red]"></span>
+            <span className="text-xs font-medium text-gray-300 uppercase tracking-wider">Gravação Ao Vivo</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6">
-            Arte, Música <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-tech to-primary-art">& Tecnologia.</span>
+            Sua Música <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-tech to-primary-art">Em Outro Nível.</span>
           </h1>
           
           <p className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
-            Somos o Estúdio CRIA. Uma produtora completa: da Ilustração à Produção Musical, do Web Design à Publicação de Livros. 
+            O Estúdio CRIA é a casa do áudio de alta fidelidade. Mixagem analógica, masterização para streaming e produção musical que respeita sua identidade artística.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -51,19 +51,19 @@ const Hero: React.FC = () => {
               onClick={(e) => handleScroll(e, '#portfolio')}
               className="px-8 py-4 bg-gradient-to-r from-primary-tech to-purple-800 text-white rounded-lg font-bold hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] transition-all duration-300 flex items-center gap-2 cursor-pointer"
             >
-              Ver Portfólio <ArrowRight size={20} />
+              Ouvir Produções <ArrowRight size={20} />
             </a>
             <a
               href="#contact"
               onClick={(e) => handleScroll(e, '#contact')}
               className="px-8 py-4 bg-layer border border-white/10 text-white rounded-lg font-bold hover:bg-white/5 transition-all duration-300 cursor-pointer"
             >
-              Iniciar Projeto
+              Agendar Sessão
             </a>
           </div>
         </motion.div>
 
-        {/* Abstract 3D/Visual Placeholder */}
+        {/* Abstract 3D/Visual Placeholder - Music Vibe */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -71,14 +71,15 @@ const Hero: React.FC = () => {
           className="relative h-[400px] md:h-[600px] w-full flex items-center justify-center"
         >
             <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+                 {/* Image of a Mixing Console or Studio Mic */}
                  <img 
-                    src="https://picsum.photos/800/800?grayscale" 
-                    alt="Artistic Concept" 
+                    src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop" 
+                    alt="Mixing Console" 
                     className="w-full h-full object-cover opacity-60 mix-blend-overlay group-hover:scale-105 transition-transform duration-1000"
                  />
                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
                  
-                 {/* Floating UI Cards */}
+                 {/* Floating UI Cards - Music Stats */}
                  <motion.div 
                     animate={{ y: [0, -15, 0] }}
                     transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
@@ -86,11 +87,11 @@ const Hero: React.FC = () => {
                  >
                     <div className="flex items-center gap-3 mb-2">
                         <div className="w-8 h-8 rounded-full bg-primary-art flex items-center justify-center">
-                            <span className="text-xs font-bold">ART</span>
+                            <Mic2 size={16} className="text-white"/>
                         </div>
-                        <span className="text-sm font-bold">Multimídia</span>
+                        <span className="text-sm font-bold">On Air</span>
                     </div>
-                    <p className="text-xs text-gray-400">Ilustração, Música & Vídeo.</p>
+                    <p className="text-xs text-gray-400">Captação Valvulada & Pré-amps Class A.</p>
                  </motion.div>
             </div>
         </motion.div>

@@ -5,14 +5,16 @@ import { ProjectCategory } from '../types';
 
 const categories: ProjectCategory[] = [
     'All', 
-    'Illustration', 
-    'Music', 
-    'Video', 
-    'Design', 
-    'Web', 
-    'Restoration', 
-    'Editorial', 
-    'Animation'
+    'Trap',
+    'Funk',
+    'Hip Hop', 
+    'Pop', 
+    'Electronic', 
+    'Rock/Alt', 
+    'MPB', 
+    'Mix & Master', 
+    'Sound Design', 
+    'Podcasts'
 ];
 
 interface PortfolioProps {
@@ -26,12 +28,19 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
     : PROJECTS.filter(p => p.category === activeCategory);
 
   return (
-    <section id="portfolio" className="py-24 bg-obsidian border-t border-white/5 scroll-mt-28">
+    <section className="pt-32 pb-24 bg-obsidian min-h-screen">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-                <h2 className="text-4xl font-display font-bold mb-4">Galeria de <span className="text-primary-art">Projetos</span></h2>
-                <p className="text-gray-400 max-w-md">Uma seleção curada de trabalhos onde exploramos os limites da criatividade.</p>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-block px-3 py-1 mb-4 rounded-full bg-layer border border-white/10 text-xs font-bold uppercase tracking-wider text-primary-tech"
+                >
+                  Nosso Trabalho
+                </motion.div>
+                <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Discografia & <span className="text-primary-art">Produções</span></h2>
+                <p className="text-gray-400 max-w-md">Ouça alguns dos artistas, MCs e bandas que já passaram pelos nossos microfones e consoles.</p>
             </div>
         </div>
 
@@ -66,7 +75,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.3 }}
                         key={project.id}
-                        className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-default bg-layer border border-white/5"
+                        className="group relative aspect-square rounded-xl overflow-hidden cursor-default bg-layer border border-white/5"
                     >
                         <img 
                             src={project.imageUrl} 
@@ -77,10 +86,20 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                             <span className="text-primary-tech text-xs font-bold uppercase tracking-wider mb-2">{project.category}</span>
                             <h3 className="text-xl font-bold font-display">{project.title}</h3>
                             <p className="text-sm text-gray-300">{project.client}</p>
+                            <div className="mt-4 flex gap-2">
+                                <span className="text-xs border border-white/20 px-2 py-1 rounded hover:bg-white hover:text-black transition-colors cursor-pointer">Spotify</span>
+                                <span className="text-xs border border-white/20 px-2 py-1 rounded hover:bg-white hover:text-black transition-colors cursor-pointer">Apple Music</span>
+                            </div>
                         </div>
                     </motion.div>
                 ))}
             </AnimatePresence>
+            
+            {filteredProjects.length === 0 && (
+                <div className="col-span-full py-12 text-center text-gray-500">
+                    <p>Nenhum projeto encontrado nesta categoria.</p>
+                </div>
+            )}
         </motion.div>
       </div>
     </section>

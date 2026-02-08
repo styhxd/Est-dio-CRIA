@@ -2,25 +2,29 @@ import { LucideIcon } from 'lucide-react';
 
 export type ServiceHighlight = 'tech' | 'art' | 'cyan';
 
+export type PageView = 'home' | 'about' | 'services' | 'portfolio' | 'contact' | 'clube';
+
 export interface Service {
   id: string;
   title: string;
   description: string;
   icon: LucideIcon;
   highlightColor: ServiceHighlight;
-  colSpan?: boolean; // For Bento Grid layout sizing
+  colSpan?: boolean; 
 }
 
 export type ProjectCategory = 
   | 'All' 
-  | 'Illustration' 
-  | 'Music' 
-  | 'Video' 
-  | 'Design' 
-  | 'Web' 
-  | 'Restoration' 
-  | 'Editorial' 
-  | 'Animation';
+  | 'Trap'
+  | 'Funk'
+  | 'Hip Hop' 
+  | 'Pop' 
+  | 'Electronic' 
+  | 'Rock/Alt' 
+  | 'MPB' 
+  | 'Mix & Master' 
+  | 'Sound Design' 
+  | 'Podcasts';
 
 export interface Project {
   id: string;

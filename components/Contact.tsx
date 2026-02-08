@@ -4,16 +4,16 @@ import { MapPin, Mail, Phone, ChevronDown, Send, ArrowRight, Plus } from 'lucide
 
 const FAQS = [
   {
-    question: "Como funciona o processo criativo?",
-    answer: "Trabalhamos em 4 etapas: Imersão (Briefing e Pesquisa), Estratégia (Conceito), Criação (Design e Desenvolvimento) e Entrega (Lançamento e Suporte). Mantemos você envolvido em cada aprovação."
+    question: "Como funciona a distribuição digital?",
+    answer: "Nós subimos sua música para todas as plataformas (Spotify, Deezer, Apple Music, Tidal, etc). Criamos o ISRC, cadastramos os direitos autorais e você recebe um painel para acompanhar seus plays e royalties."
   },
   {
-    question: "Vocês atendem clientes internacionais?",
-    answer: "Sim! Já entregamos projetos para marcas na Europa e América do Norte. Nossa equipe é fluente em inglês e adaptada a fusos horários globais."
+    question: "Preciso ter a letra e o beat prontos?",
+    answer: "Não necessariamente. Temos produtores in-house que podem criar o beat do zero (beatmaking) e compositores que ajudam a finalizar sua letra durante a pré-produção."
   },
   {
-    question: "Vocês ajudam a publicar livros?",
-    answer: "Com certeza! Cuidamos de tudo: revisão, diagramação, capa, registro ISBN e distribuição."
+    question: "Quanto tempo dura uma sessão de gravação?",
+    answer: "Nossos blocos mínimos são de 2 horas. Para gravação de voz e mixagem de um single, geralmente recomendamos reservar um bloco de 4 a 6 horas para garantir tranquilidade."
   }
 ];
 
@@ -26,10 +26,10 @@ const Contact: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="text-accent-cyan font-bold tracking-widest text-sm uppercase mb-3 block">Vamos Conversar</span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">Pronto para <span className="text-primary-art">transformar</span> sua marca?</h2>
+          <span className="text-accent-cyan font-bold tracking-widest text-sm uppercase mb-3 block">Vamos Gravar?</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">Pronto para <span className="text-primary-art">soltar a voz</span>?</h2>
           <p className="text-gray-400 text-lg">
-            De ilustrações a produção musical, de sites a livros. Preencha o formulário e vamos começar.
+            Tire sua música do papel. Agende sua sessão, mande sua demo ou peça um orçamento para produção completa.
           </p>
         </div>
 
@@ -43,11 +43,11 @@ const Contact: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-400">Nome</label>
-                  <input type="text" placeholder="Seu nome" className="w-full bg-obsidian border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary-tech focus:ring-1 focus:ring-primary-tech outline-none transition-all" />
+                  <input type="text" placeholder="Seu nome ou Artista" className="w-full bg-obsidian border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary-tech focus:ring-1 focus:ring-primary-tech outline-none transition-all" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400">Empresa/Artista</label>
-                  <input type="text" placeholder="Sua marca" className="w-full bg-obsidian border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary-tech focus:ring-1 focus:ring-primary-tech outline-none transition-all" />
+                  <label className="text-sm font-bold text-gray-400">Instagram/Spotify</label>
+                  <input type="text" placeholder="@seuinsta" className="w-full bg-obsidian border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary-tech focus:ring-1 focus:ring-primary-tech outline-none transition-all" />
                 </div>
               </div>
               
@@ -57,28 +57,26 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-400">Tipo de Projeto</label>
+                <label className="text-sm font-bold text-gray-400">O que você precisa?</label>
                 <select className="w-full bg-obsidian border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary-tech focus:ring-1 focus:ring-primary-tech outline-none transition-all appearance-none cursor-pointer">
                   <option>Selecione uma opção</option>
-                  <option>Ilustração Digital</option>
-                  <option>Produção Musical</option>
-                  <option>Vídeo & Audiovisual</option>
-                  <option>Design Gráfico</option>
-                  <option>Web Design</option>
-                  <option>Restauração de Fotos</option>
-                  <option>Publicação de Livro</option>
-                  <option>Animação 2D</option>
-                  <option>Outro</option>
+                  <option>Gravação de Voz/Instrumentos</option>
+                  <option>Produção Completa (Beat + Gravação)</option>
+                  <option>Mixagem & Masterização</option>
+                  <option>Distribuição Digital</option>
+                  <option>Mentoria/Aula</option>
+                  <option>Podcast</option>
+                  <option>Aluguel do Estúdio (Diária)</option>
                 </select>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-400">Mensagem</label>
-                <textarea rows={4} placeholder="Conte um pouco sobre sua ideia..." className="w-full bg-obsidian border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary-tech focus:ring-1 focus:ring-primary-tech outline-none transition-all resize-none"></textarea>
+                <label className="text-sm font-bold text-gray-400">Detalhes do Projeto</label>
+                <textarea rows={4} placeholder="Conte sobre seu estilo musical, referências e objetivos..." className="w-full bg-obsidian border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary-tech focus:ring-1 focus:ring-primary-tech outline-none transition-all resize-none"></textarea>
               </div>
 
               <button className="w-full py-4 bg-gradient-to-r from-primary-tech to-purple-800 rounded-lg font-bold text-white shadow-lg hover:shadow-primary-tech/25 transition-all flex items-center justify-center gap-2 group">
-                Enviar Mensagem <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                Enviar para o Produtor <Send size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </form>
           </div>
@@ -90,7 +88,7 @@ const Contact: React.FC = () => {
             <div id="faq" className="scroll-mt-32">
               <h3 className="text-2xl font-display font-bold mb-6 flex items-center gap-3">
                 <span className="p-2 bg-white/5 rounded-lg text-accent-cyan"><Plus size={20} /></span>
-                Dúvidas Frequentes
+                Dúvidas do Artista
               </h3>
               <div className="space-y-4">
                 {FAQS.map((faq, index) => (
@@ -125,9 +123,9 @@ const Contact: React.FC = () => {
             <div className="grid sm:grid-cols-2 gap-8">
               <div id="location" className="p-6 bg-layer border border-white/5 rounded-xl scroll-mt-32">
                 <div className="text-primary-art mb-4"><MapPin size={32} /></div>
-                <h4 className="font-bold text-xl mb-2">Base Criativa</h4>
+                <h4 className="font-bold text-xl mb-2">Estúdio Principal</h4>
                 <p className="text-gray-400 text-sm mb-4">
-                  Av. Paulista, 1234 - Bela Vista<br/>
+                  Rua da Música, 440 - Vila Madalena<br/>
                   São Paulo - SP, Brasil
                 </p>
                 <a href="#" onClick={(e) => e.preventDefault()} className="text-xs font-bold text-white border-b border-primary-art/50 hover:text-primary-art transition-colors pb-0.5 cursor-pointer">Ver no Mapa</a>
@@ -137,12 +135,12 @@ const Contact: React.FC = () => {
                 <div className="absolute top-0 right-0 p-3 opacity-10">
                    <div className="w-16 h-16 bg-gradient-to-br from-accent-cyan to-transparent rounded-full"></div>
                 </div>
-                <h4 className="font-bold text-xl mb-2">Carreiras</h4>
+                <h4 className="font-bold text-xl mb-2">Beatmakers & Eng.</h4>
                 <p className="text-gray-400 text-sm mb-4">
-                  Estamos sempre em busca de talentos visionários. Designers, Devs e Motion Artists.
+                  Estamos contratando Engenheiros de Mixagem e Beatmakers residentes.
                 </p>
                 <a href="mailto:vagas@estudiocria.com" className="inline-flex items-center gap-2 text-sm font-bold text-accent-cyan hover:text-white transition-colors">
-                  Enviar Portfólio <ArrowRight size={14} />
+                  Mandar Portfólio <ArrowRight size={14} />
                 </a>
               </div>
             </div>
