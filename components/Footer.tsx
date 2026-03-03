@@ -20,7 +20,12 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           {/* Brand & About */}
           <div className="lg:col-span-5">
-            <h2 className="text-2xl font-display font-bold mb-4">ESTÚDIO<span className="text-primary-tech">CRIA</span></h2>
+            <img 
+              src="https://drive.google.com/uc?export=view&id=1QVsEJ_GoV1xoVSKeKExSkS-CZJ68tw4w" 
+              alt="Estúdio CRIA" 
+              className="h-10 w-auto object-contain mb-6"
+              referrerPolicy="no-referrer"
+            />
             <p className="text-gray-400 mb-6 leading-relaxed max-w-md text-sm">
               Potencializamos marcas e artistas com produção multimídia de nível global. Do roteiro à tela, do acorde ao streaming.
             </p>
@@ -45,7 +50,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li><a href="#" onClick={(e) => handleNav(e, 'portfolio')} className="hover:text-primary-art transition-colors">Portfólio</a></li>
               <li><a href="#" onClick={(e) => handleNav(e, 'about')} className="hover:text-primary-art transition-colors">Sobre Nós</a></li>
               <li><a href="#" onClick={(e) => handleNav(e, 'contact')} className="hover:text-primary-art transition-colors">Iniciar Projeto</a></li>
-              <li><a href="#" onClick={(e) => handleNav(e, 'clube')} className="hover:text-primary-art transition-colors">Clube CRIA</a></li>
             </ul>
           </div>
 

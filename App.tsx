@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import About from './components/About';
 import Contact from './components/Contact';
-import Clube from './components/Clube';
 import { ProjectCategory, PageView } from './types';
 
 function App() {
@@ -76,17 +75,6 @@ function App() {
           >
             <Contact />
           </motion.div>
-        );
-      case 'clube':
-        return (
-            <motion.div 
-              key="clube"
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              exit={{ opacity: 0 }}
-            >
-              <Clube />
-            </motion.div>
         );
       default:
         return <Hero onNavigate={setCurrentPage} />;

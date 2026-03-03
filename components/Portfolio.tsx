@@ -124,20 +124,36 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                         }}
                         className="group relative rounded-xl overflow-hidden cursor-pointer bg-layer border border-white/5 break-inside-avoid"
                     >
-                        <img 
-                            src={project.imageUrl} 
-                            alt={project.title} 
-                            referrerPolicy="no-referrer"
-                            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                            onContextMenu={(e) => e.preventDefault()}
-                            draggable={false}
-                            onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                if (!target.src.includes('unsplash')) {
-                                    target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop';
-                                }
-                            }}
-                        />
+                        {project.id === 'a1' ? (
+                            <video
+                                src={project.mediaUrl}
+                                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                                muted
+                                playsInline
+                                preload="metadata"
+                                onContextMenu={(e) => e.preventDefault()}
+                                onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.pause();
+                                    e.currentTarget.currentTime = 0;
+                                }}
+                            />
+                        ) : (
+                            <img 
+                                src={project.imageUrl} 
+                                alt={project.title} 
+                                referrerPolicy="no-referrer"
+                                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                                onContextMenu={(e) => e.preventDefault()}
+                                draggable={false}
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    if (!target.src.includes('unsplash')) {
+                                        target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop';
+                                    }
+                                }}
+                            />
+                        )}
                         
                         {/* Media Type Icon */}
                         <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md p-2 rounded-full border border-white/10 text-white">
@@ -289,6 +305,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                                     className="relative inline-block max-w-full max-h-[80vh] cursor-ew-resize select-none z-30 shadow-2xl rounded-xl overflow-hidden"
                                     onMouseMove={handleCompareMove}
                                     onTouchMove={handleCompareMove}
+                                    onClick={handleCompareMove}
                                 >
                                     {/* After Image (Bottom) */}
                                     <img src={selectedProject.afterImageUrl} alt="After" className="block max-w-full max-h-[80vh] w-auto h-auto pointer-events-none" draggable={false} referrerPolicy="no-referrer" />
@@ -297,7 +314,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                                     <img 
                                         src={selectedProject.beforeImageUrl} 
                                         alt="Before" 
-                                        className="absolute top-0 left-0 w-full h-full object-fill pointer-events-none" 
+                                        className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none" 
                                         style={{ clipPath: `inset(0 ${100 - compareSliderPos}% 0 0)` }} 
                                         draggable={false} 
                                         referrerPolicy="no-referrer" 

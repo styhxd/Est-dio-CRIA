@@ -162,8 +162,13 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePort
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
         {/* Logo */}
-        <button onClick={() => handleNavigation('home')} className="text-2xl font-display font-bold tracking-tighter relative z-50 cursor-pointer">
-          ESTÚDIO<span className="text-primary-tech">CRIA</span>
+        <button onClick={() => handleNavigation('home')} className="relative z-50 cursor-pointer flex items-center">
+          <img 
+            src="https://drive.google.com/uc?export=view&id=1QVsEJ_GoV1xoVSKeKExSkS-CZJ68tw4w" 
+            alt="Estúdio CRIA" 
+            className="h-8 md:h-10 w-auto object-contain"
+            referrerPolicy="no-referrer"
+          />
         </button>
 
         {/* Desktop Nav */}
@@ -184,12 +189,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePort
               </button>
             </div>
           ))}
-          <button
-            onClick={() => handleNavigation('clube')}
-            className={`px-5 py-2 border rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${currentPage === 'clube' ? 'bg-primary-art/20 border-primary-art text-white' : 'bg-layer border-white/10 text-gray-300 hover:border-primary-art/50 hover:bg-primary-art/10'}`}
-          >
-            Clube CRIA
-          </button>
         </nav>
 
         {/* Mobile Toggle */}
@@ -307,12 +306,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePort
                   )}
                 </div>
               ))}
-              <button
-                onClick={() => handleNavigation('clube')}
-                className="text-lg font-medium text-primary-art text-center mt-4 border border-primary-art/30 rounded-full py-3 cursor-pointer"
-              >
-                Clube CRIA
-              </button>
             </nav>
           </motion.div>
         )}

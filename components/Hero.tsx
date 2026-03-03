@@ -15,7 +15,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   };
 
   return (
-    <section id="hero" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-obsidian pt-24 pb-12">
+    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-obsidian pt-32 pb-16">
       {/* Reliable Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-obsidian/85 z-10" /> {/* Dark Overlay */}
@@ -41,7 +41,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <span className="text-[10px] md:text-xs font-medium text-gray-300 uppercase tracking-[0.2em]">Estúdio Multimídia</span>
           </div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] mb-6 md:mb-8 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] mb-6 md:mb-8 tracking-tight">
             Produção Multimídia <br className="hidden sm:block" />
             <span className="text-primary-tech">
               de Alta Performance.
