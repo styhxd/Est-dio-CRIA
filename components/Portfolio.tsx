@@ -22,6 +22,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [compareSliderPos, setCompareSliderPos] = useState(50);
+  const [mediaError, setMediaError] = useState(false);
   const compareRef = useRef<HTMLDivElement>(null);
 
   const filteredProjects = activeCategory === 'All' 
@@ -56,6 +57,15 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
         case 'gallery': return 'Ver Galeria';
         default: return 'Ver Imagem';
     }
+  };
+
+  const getFallbackUrl = (url: string) => {
+      if (!url) return '';
+      const idMatch = url.match(/id=([^&]+)/);
+      if (idMatch && idMatch[1]) {
+          return `https://drive.google.com/file/d/${idMatch[1]}/preview`;
+      }
+      return url;
   };
 
   return (
@@ -110,6 +120,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                             setSelectedProject(project);
                             setGalleryIndex(0);
                             setCompareSliderPos(50);
+                            setMediaError(false);
                         }}
                         className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer bg-layer border border-white/5"
                     >
@@ -179,28 +190,47 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                         <div className="absolute inset-0 z-40 pointer-events-none" onContextMenu={(e) => e.preventDefault()}></div>
 
                         {selectedProject.mediaType === 'video' && selectedProject.mediaUrl && (
-                            <video 
-                                src={selectedProject.mediaUrl} 
-                                controls 
-                                autoPlay 
-                                controlsList="nodownload nofullscreen noremoteplayback"
-                                disablePictureInPicture
-                                className="w-full h-full object-contain relative z-30" 
-                                onContextMenu={(e) => e.preventDefault()}
-                            />
+                            mediaError ? (
+                                <iframe 
+                                    src={getFallbackUrl(selectedProject.mediaUrl)} 
+                                    className="w-full h-full border-0 relative z-30" 
+                                    allow="autoplay"
+                                    allowFullScreen
+                                ></iframe>
+                            ) : (
+                                <video 
+                                    src={selectedProject.mediaUrl} 
+                                    controls 
+                                    autoPlay 
+                                    controlsList="nodownload nofullscreen noremoteplayback"
+                                    disablePictureInPicture
+                                    className="w-full h-full object-contain relative z-30" 
+                                    onContextMenu={(e) => e.preventDefault()}
+                                    onError={() => setMediaError(true)}
+                                />
+                            )
                         )}
 
                         {selectedProject.mediaType === 'audio' && selectedProject.mediaUrl && (
                             <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-gradient-to-br from-layer to-obsidian relative z-30">
                                 <img src={selectedProject.imageUrl} alt={selectedProject.title} className="w-64 h-64 object-cover rounded-xl shadow-2xl mb-8" draggable={false} />
-                                <audio 
-                                    src={selectedProject.mediaUrl} 
-                                    controls 
-                                    autoPlay 
-                                    controlsList="nodownload"
-                                    className="w-full max-w-md" 
-                                    onContextMenu={(e) => e.preventDefault()}
-                                />
+                                {mediaError ? (
+                                    <iframe 
+                                        src={getFallbackUrl(selectedProject.mediaUrl)} 
+                                        className="w-full max-w-md h-24 border-0 rounded-xl" 
+                                        allow="autoplay"
+                                    ></iframe>
+                                ) : (
+                                    <audio 
+                                        src={selectedProject.mediaUrl} 
+                                        controls 
+                                        autoPlay 
+                                        controlsList="nodownload"
+                                        className="w-full max-w-md" 
+                                        onContextMenu={(e) => e.preventDefault()}
+                                        onError={() => setMediaError(true)}
+                                    />
+                                )}
                             </div>
                         )}
 
@@ -287,15 +317,25 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                                 </div>
                                 <div className="w-full md:w-1/2 h-full flex items-center justify-center">
                                     {selectedProject.mediaUrl ? (
-                                        <video 
-                                            src={selectedProject.mediaUrl} 
-                                            controls 
-                                            autoPlay 
-                                            controlsList="nodownload nofullscreen noremoteplayback"
-                                            disablePictureInPicture
-                                            className="w-full rounded-xl shadow-2xl max-h-[40vh] object-contain" 
-                                            onContextMenu={(e) => e.preventDefault()}
-                                        />
+                                        mediaError ? (
+                                            <iframe 
+                                                src={getFallbackUrl(selectedProject.mediaUrl)} 
+                                                className="w-full rounded-xl shadow-2xl min-h-[300px] border-0 relative z-30" 
+                                                allow="autoplay"
+                                                allowFullScreen
+                                            ></iframe>
+                                        ) : (
+                                            <video 
+                                                src={selectedProject.mediaUrl} 
+                                                controls 
+                                                autoPlay 
+                                                controlsList="nodownload nofullscreen noremoteplayback"
+                                                disablePictureInPicture
+                                                className="w-full rounded-xl shadow-2xl max-h-[40vh] object-contain relative z-30" 
+                                                onContextMenu={(e) => e.preventDefault()}
+                                                onError={() => setMediaError(true)}
+                                            />
+                                        )
                                     ) : (
                                         selectedProject.galleryUrls && selectedProject.galleryUrls[0] && (
                                             <img src={selectedProject.galleryUrls[0]} alt="Preview" className="w-full rounded-xl shadow-2xl object-cover" draggable={false} />

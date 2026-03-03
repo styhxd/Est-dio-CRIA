@@ -152,10 +152,10 @@ export const SERVICES: Service[] = [
   }
 ];
 
-const getDriveImage = (id: string) => `https://drive.google.com/uc?export=view&id=${id}`;
+const getDriveImage = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w2500-h2500`;
 const getDriveVideoThumb = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w800-h800`;
-const getDriveVideo = (id: string) => `https://drive.google.com/file/d/${id}/preview`;
-const getDriveAudio = (id: string) => `https://drive.google.com/file/d/${id}/preview`; // Audio preview
+const getDriveVideo = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
+const getDriveAudio = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
 
 export const PROJECTS: Project[] = [
   // Animação 2D
@@ -290,7 +290,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'm1',
     title: 'Rima Leste - Resenha',
-    client: 'Case de Sucesso',
+    client: 'Produção Musical',
     category: 'Música',
     imageUrl: getDriveImage('1e4a-AiCnwEALJMcGdgDd1uiQWRCZIfmx'),
     mediaType: 'music_release',
