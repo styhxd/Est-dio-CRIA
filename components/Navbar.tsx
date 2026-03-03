@@ -23,12 +23,22 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePort
     { name: 'Contato', page: 'contact' as PageView, hasSubmenu: true },
   ];
 
-  const handleNavigation = (page: PageView) => {
+  const handleNavigation = (page: PageView, href?: string) => {
     onNavigate(page);
     setIsMobileMenuOpen(false);
     setHoveredLink(null);
     setMobileExpanded(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    if (href) {
+      setTimeout(() => {
+        const element = document.getElementById(href.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const renderMegaMenuContent = (linkName: string) => {
@@ -70,7 +80,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePort
                     {NAV_CONTENT.sobre.map((item) => (
                         <div 
                           key={item.title} 
-                          onClick={() => handleNavigation('about')}
+                          onClick={() => handleNavigation('about', item.href)}
                           className="group flex items-center gap-3 p-3 hover:bg-white/5 rounded-lg transition-colors border border-transparent hover:border-white/5 cursor-pointer"
                         >
                             <div className="text-primary-art group-hover:text-white transition-colors bg-white/5 p-2 rounded-md">
@@ -125,7 +135,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePort
                 {NAV_CONTENT.contato.map((item) => (
                     <div 
                       key={item.title} 
-                      onClick={() => handleNavigation('contact')}
+                      onClick={() => handleNavigation('contact', item.href)}
                       className="group p-6 rounded-xl bg-layer border border-white/10 hover:border-accent-cyan/50 hover:bg-white/5 transition-all flex flex-col items-start cursor-pointer"
                     >
                         <div className="mb-4 p-3 rounded-lg bg-accent-cyan/10 text-accent-cyan group-hover:scale-110 transition-transform">
@@ -262,7 +272,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePort
                           {link.name === 'Sobre' && NAV_CONTENT.sobre.map((item) => (
                               <div 
                                 key={item.title} 
-                                onClick={() => handleNavigation('about')} 
+                                onClick={() => handleNavigation('about', item.href)} 
                                 className="flex items-center gap-3 text-gray-400 hover:text-primary-art cursor-pointer"
                               >
                                   <item.icon size={16} /> <span className="text-sm">{item.title}</span>
@@ -285,7 +295,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage, onNavigatePort
                           {link.name === 'Contato' && NAV_CONTENT.contato.map((item) => (
                               <div 
                                 key={item.title} 
-                                onClick={() => handleNavigation('contact')} 
+                                onClick={() => handleNavigation('contact', item.href)} 
                                 className="flex items-center gap-3 text-gray-400 hover:text-accent-cyan cursor-pointer"
                               >
                                   <item.icon size={16} /> <span className="text-sm">{item.title}</span>

@@ -18,7 +18,12 @@ import {
   Users,
   Target,
   Wand2,
-  BoomBox
+  BoomBox,
+  Camera,
+  Video,
+  Image,
+  Film,
+  PlaySquare
 } from 'lucide-react';
 import { Service, Project, Client, ProjectCategory, PageView } from './types';
 
@@ -26,84 +31,84 @@ import { Service, Project, Client, ProjectCategory, PageView } from './types';
 export const NAV_CONTENT = {
   sobre: [
     {
-      title: 'Identidade Sonora',
-      description: 'Nossa filosofia de áudio.',
+      title: 'Sobre o Estúdio',
+      description: 'Nossa estrutura e equipe.',
       page: 'about',
+      href: '#about',
       icon: Target
     },
     {
-      title: 'Workflow',
-      description: 'Do Rec ao Play: nosso processo.',
+      title: 'Metodologia',
+      description: 'Nosso processo de trabalho.',
       page: 'about',
+      href: '#methodology',
       icon: Sparkles
-    },
-    {
-      title: 'Artistas & Selos',
-      description: 'Quem grava com a gente.',
-      page: 'about',
-      icon: Users
-    },
-    {
-      title: 'Mentoria de Áudio',
-      description: 'Workshops de Mix e Produção.',
-      page: 'about',
-      icon: GraduationCap
     }
   ],
   portfolio: [
     {
-      title: 'Discografia Completa',
-      description: 'Nossos últimos lançamentos.',
+      title: 'Todo o Portfólio',
+      description: 'Nossos últimos trabalhos.',
       page: 'portfolio', 
-      icon: Disc,
+      icon: Briefcase,
       category: 'All' as ProjectCategory
     },
     {
-      title: 'Trap & Drill',
-      description: 'Graves 808 e hi-hats rápidos.',
+      title: 'Animação 2D',
+      description: 'Animações e motion graphics.',
       page: 'portfolio',
-      icon: Zap,
-      category: 'Trap' as ProjectCategory
+      icon: Film,
+      category: 'Animação 2D' as ProjectCategory
     },
     {
-      title: 'Funk Consciente/Mandelão',
-      description: 'A batida que domina o Brasil.',
+      title: 'Fotografia',
+      description: 'Ensaios e coberturas.',
       page: 'portfolio',
-      icon: BoomBox,
-      category: 'Funk' as ProjectCategory
+      icon: Camera,
+      category: 'Fotografia' as ProjectCategory
     },
     {
-      title: 'Hip Hop & Boombap',
-      description: 'Beats clássicos e lírica.',
+      title: 'Fotos Restauradas',
+      description: 'Recuperação de memórias.',
       page: 'portfolio',
-      icon: Mic2,
-      category: 'Hip Hop' as ProjectCategory
+      icon: Image,
+      category: 'Fotos Restauradas' as ProjectCategory
     },
     {
-      title: 'Pop & Mainstream',
-      description: 'Produções para o topo das paradas.',
+      title: 'Música',
+      description: 'Produções musicais e áudio.',
       page: 'portfolio',
       icon: Music,
-      category: 'Pop' as ProjectCategory
+      category: 'Música' as ProjectCategory
+    },
+    {
+      title: 'Vídeos',
+      description: 'Clipes e coberturas audiovisuais.',
+      page: 'portfolio',
+      icon: Video,
+      category: 'Vídeos' as ProjectCategory
     }
   ],
   contato: [
     {
-      title: 'Agendar Sessão',
-      description: 'Reserve o estúdio agora.',
+      title: 'Iniciar Projeto',
+      description: 'Fale com nossa equipe.',
       page: 'contact',
+      href: '#contact',
       icon: Mic
     },
     {
       title: 'Dúvidas Frequentes',
-      description: 'Equipamentos e processos.',
+      description: 'Processos e orçamentos.',
       page: 'contact',
+      href: '#faq',
       icon: HelpCircle
     },
     {
       title: 'Localização',
-      description: 'Onde o som acontece.',
+      description: 'Onde a mágica acontece.',
       page: 'contact',
+      href: '#location',
       icon: MapPin
     }
   ]
@@ -112,126 +117,235 @@ export const NAV_CONTENT = {
 export const SERVICES: Service[] = [
   {
     id: 's1',
-    title: 'Gravação & Captação',
-    description: 'Sala tratada acusticamente, microfones valvulados e pré-amplificadores de classe A para capturar a melhor performance da sua voz ou instrumento.',
-    icon: Mic2,
-    highlightColor: 'art',
-  },
-  {
-    id: 's2',
-    title: 'Produção de Beat (Trap/Funk)',
-    description: 'Criação de instrumentais exclusivos. Do 150BPM ao Trap melódico, nossos beatmakers criam a base perfeita para sua letra.',
-    icon: Music,
+    title: 'Animação 2D',
+    description: 'Motion graphics e animação tradicional para dar vida a ideias, marcas e narrativas complexas com fluidez e impacto visual.',
+    icon: Film,
     highlightColor: 'tech',
   },
   {
+    id: 's2',
+    title: 'Fotografia Premium',
+    description: 'Ensaios, cobertura de eventos e fotografia de produto com iluminação impecável e pós-produção de alto nível.',
+    icon: Camera,
+    highlightColor: 'art',
+  },
+  {
     id: 's3',
-    title: 'Mixagem Profissional',
-    description: 'Equilíbrio, profundidade e clareza. Utilizamos o melhor do mundo analógico e digital para dar o peso que sua música precisa.',
-    icon: Sliders,
+    title: 'Restauração Digital',
+    description: 'Recuperação minuciosa de fotografias antigas ou danificadas, trazendo memórias de volta à vida com precisão e cuidado.',
+    icon: Image,
     highlightColor: 'cyan',
   },
   {
     id: 's4',
-    title: 'Masterização',
-    description: 'O polimento final. Garantimos que sua música soe alto e competitiva em todas as plataformas (Spotify, Apple Music, YouTube).',
-    icon: Speaker,
+    title: 'Produção Musical',
+    description: 'Gravação, mixagem, masterização e sound design. Qualidade de estúdio premium para elevar a sua obra.',
+    icon: Music,
     highlightColor: 'tech',
   },
   {
     id: 's5',
-    title: 'Distribuição Digital',
-    description: 'Lançamos sua música em +150 plataformas digitais, cuidamos do ISRC e gerenciamos seus royalties.',
-    icon: Globe,
-    highlightColor: 'cyan',
-  },
-  {
-    id: 's6',
-    title: 'Restauro de Áudio',
-    description: 'Limpeza de ruídos, remoção de crackles e pops, e recuperação de gravações antigas ou danificadas.',
-    icon: Wand2,
+    title: 'Produção Audiovisual',
+    description: 'Direção, captação e edição de vídeos em alta resolução para clipes, institucionais e campanhas publicitárias.',
+    icon: Video,
     highlightColor: 'art',
-  },
-  {
-    id: 's7',
-    title: 'Marketing Musical',
-    description: 'Estratégia de lançamento, Pitching para playlists editoriais e gestão de tráfego pago para artistas.',
-    icon: BarChart3,
-    highlightColor: 'tech',
-  },
-  {
-    id: 's8',
-    title: 'Sound Design & SFX',
-    description: 'Criação de efeitos sonoros, foley e trilhas originais para games, cinema e publicidade.',
-    icon: Radio,
-    highlightColor: 'art',
-  },
+  }
 ];
 
+const getDriveImage = (id: string) => `https://drive.google.com/uc?export=view&id=${id}`;
+const getDriveVideoThumb = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w800-h800`;
+const getDriveVideo = (id: string) => `https://drive.google.com/file/d/${id}/preview`;
+const getDriveAudio = (id: string) => `https://drive.google.com/file/d/${id}/preview`; // Audio preview
+
 export const PROJECTS: Project[] = [
+  // Animação 2D
   {
-    id: 'p1',
-    title: 'Single: "Noite de Baile"',
-    client: 'MC Jotta',
-    category: 'Funk',
-    imageUrl: 'https://images.unsplash.com/photo-1571266028243-371695039353?q=80&w=2070&auto=format&fit=crop',
+    id: 'a1',
+    title: 'Bingo Abana Rabo',
+    client: 'Livro Infantil',
+    category: 'Animação 2D',
+    imageUrl: getDriveVideoThumb('1lbguGQGCdCb6_xoHTCoNCXWFFrgDtlnL'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1lbguGQGCdCb6_xoHTCoNCXWFFrgDtlnL'),
   },
   {
-    id: 'p2',
-    title: 'Álbum: "Ouro & Prata"',
-    client: 'Lil Z',
-    category: 'Trap',
-    imageUrl: 'https://images.unsplash.com/photo-1517400508447-f8dd518b86db?q=80&w=2070&auto=format&fit=crop',
+    id: 'a2',
+    title: 'ET Joga Game',
+    client: 'Animação Autoral',
+    category: 'Animação 2D',
+    imageUrl: getDriveVideoThumb('1aD-rBvFJdxQ_uQdrQTKjnFixMl9AM08Y'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1aD-rBvFJdxQ_uQdrQTKjnFixMl9AM08Y'),
   },
   {
-    id: 'p3',
-    title: 'EP: "Ritmo de Rua"',
-    client: 'DJ K',
-    category: 'Funk',
-    imageUrl: 'https://images.unsplash.com/photo-1621360841013-c768371e93cf?q=80&w=2548&auto=format&fit=crop',
+    id: 'a3',
+    title: 'Geleia de Jabuticaba',
+    client: 'Curta Premiado',
+    category: 'Animação 2D',
+    imageUrl: getDriveVideoThumb('1cJSP9NF9tk4BMe1JfFh_yxlWVlWi97md'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1cJSP9NF9tk4BMe1JfFh_yxlWVlWi97md'),
   },
   {
-    id: 'p4',
-    title: 'Single: "Vibe Alta"',
-    client: 'Trapper X',
-    category: 'Trap',
-    imageUrl: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop',
+    id: 'a4',
+    title: 'Tattoo Pro Site',
+    client: 'Animação Gótica',
+    category: 'Animação 2D',
+    imageUrl: getDriveVideoThumb('1HQYx6GfX1oM3LpigcGgs94GwcnwvTucu'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1HQYx6GfX1oM3LpigcGgs94GwcnwvTucu'),
   },
   {
-    id: 'p5',
-    title: 'Álbum: "Vozes da Rua"',
-    client: 'MC Kael',
-    category: 'Hip Hop',
-    imageUrl: 'https://picsum.photos/800/600?random=10',
+    id: 'a5',
+    title: 'Toca Aqui',
+    client: 'Motion Graphics',
+    category: 'Animação 2D',
+    imageUrl: getDriveVideoThumb('1SvXX2RqTs1rE-lr6FrXrV3sOLRwSEE03'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1SvXX2RqTs1rE-lr6FrXrV3sOLRwSEE03'),
+  },
+
+  // Fotografia
+  {
+    id: 'f1',
+    title: 'Ensaio Flaviano Melo',
+    client: 'Retrato Profissional',
+    category: 'Fotografia',
+    imageUrl: getDriveImage('1wW2Dsvyj35XFiD6-124YYhY34yqL5DPN'),
+    mediaType: 'image',
+    mediaUrl: getDriveImage('1wW2Dsvyj35XFiD6-124YYhY34yqL5DPN'),
   },
   {
-    id: 'p6',
-    title: 'Single: "Neon Lights"',
-    client: 'Luna Pop',
-    category: 'Pop',
-    imageUrl: 'https://picsum.photos/800/800?random=11',
+    id: 'f2',
+    title: 'Ensaio Dalgs',
+    client: 'Editorial',
+    category: 'Fotografia',
+    imageUrl: getDriveImage('1NgzQ942CUmSjaEDzQBpvJzSyvev6DvW8'),
+    mediaType: 'image',
+    mediaUrl: getDriveImage('1NgzQ942CUmSjaEDzQBpvJzSyvev6DvW8'),
   },
   {
-    id: 'p7',
-    title: 'Masterização: "Ecos"',
-    client: 'Banda Aurora',
-    category: 'Mix & Master',
-    imageUrl: 'https://picsum.photos/800/500?random=13',
+    id: 'f3',
+    title: 'Ensaio DJ BLJ',
+    client: 'Música & Eventos',
+    category: 'Fotografia',
+    imageUrl: getDriveImage('1N4fgNqhnLYy8tgKQYEcIVu0I8VBHW5WX'),
+    mediaType: 'image',
+    mediaUrl: getDriveImage('1N4fgNqhnLYy8tgKQYEcIVu0I8VBHW5WX'),
   },
   {
-    id: 'p8',
-    title: 'Acústico: "Raízes"',
-    client: 'Ana Clara',
-    category: 'MPB',
-    imageUrl: 'https://picsum.photos/800/600?random=16',
+    id: 'f4',
+    title: 'Matheus Malabares',
+    client: 'Arte & Performance',
+    category: 'Fotografia',
+    imageUrl: getDriveImage('14RFKT20A5EZDk8R4c_ITp4y1iNyMpNUz'),
+    mediaType: 'image',
+    mediaUrl: getDriveImage('14RFKT20A5EZDk8R4c_ITp4y1iNyMpNUz'),
+  },
+  {
+    id: 'f5',
+    title: 'Sessão Completa Dalgs',
+    client: 'Editorial de Moda',
+    category: 'Fotografia',
+    imageUrl: getDriveImage('1p9k5o9Gu4bP0fMx5I6e3SPP-L2yUB7YL'),
+    mediaType: 'gallery',
+    galleryUrls: [
+      getDriveImage('1Wn7WDtSTXCxy7Zwtln1Wn3aHRW_M_uag'),
+      getDriveImage('1p9k5o9Gu4bP0fMx5I6e3SPP-L2yUB7YL'),
+      getDriveImage('1pzvSsX_Gk_CAoqtv4A-1vRw7YlYQi6d3'),
+      getDriveImage('14EIpWYAZT1bjnGMWrg8fCP5IoA-u83ND'),
+      getDriveImage('1818O2J-rZF3WN1tq-teFdnV018kHzJh4'),
+    ]
+  },
+
+  // Fotos Restauradas
+  {
+    id: 'r1',
+    title: 'Restauração Clássica',
+    client: 'Memórias Recuperadas',
+    category: 'Fotos Restauradas',
+    imageUrl: getDriveImage('1wANrFlLN01a4PtPLtMWLal6YJZCpV4wl'),
+    mediaType: 'compare',
+    beforeImageUrl: getDriveImage('1IU78ryrBUgjCMfiXEd-i2ppLOVwNNi7i'),
+    afterImageUrl: getDriveImage('1wANrFlLN01a4PtPLtMWLal6YJZCpV4wl'),
+  },
+  {
+    id: 'r2',
+    title: 'Montagem Casal',
+    client: 'União de Memórias',
+    category: 'Fotos Restauradas',
+    imageUrl: getDriveImage('14cILAYO_dGGhcAXkchb6EGAZikT3LHZ4'),
+    mediaType: 'gallery',
+    galleryUrls: [
+      getDriveImage('1xg46VkgZmo5q-p-tAbSGUcmmxEa6W3YJ'), // Original 1
+      getDriveImage('1-RVc_WViMmZr_7s-V0C1AV9oZSLqIAIA'), // Original 2
+      getDriveImage('14cILAYO_dGGhcAXkchb6EGAZikT3LHZ4'), // Montagem 1
+      getDriveImage('1eFljUVAYkVextC5AB9gPM7YgVfOEmdia'), // Montagem 2
+      getDriveImage('1O6NFoZ-6nLnk4rC2LLMa4uQZR6c1p0jY'), // Montagem 3
+      getDriveImage('1L6lY3HYeKHneUBgnDzxydLQ86KoI455K'), // Montagem 4
+    ]
+  },
+
+  // Música
+  {
+    id: 'm1',
+    title: 'Rima Leste - Resenha',
+    client: 'Case de Sucesso',
+    category: 'Música',
+    imageUrl: getDriveImage('1e4a-AiCnwEALJMcGdgDd1uiQWRCZIfmx'),
+    mediaType: 'music_release',
+    mediaUrl: getDriveVideo('1mVkIiRyxHFDpNxspJBkzseErwOP6UEOg'), // Lyric Video
+    youtubeUrl: 'https://www.youtube.com/watch?v=Bu94oySRhHU',
+    spotifyUrl: 'https://open.spotify.com/intl-pt/artist/2c5vkTuMxaYtsQN7za8HBH',
+    galleryUrls: [
+      getDriveImage('1vJ_D4fnhJazJiJsz44BVNSr34sJC6M5r') // Youtube Print
+    ]
+  },
+
+  // Vídeos
+  {
+    id: 'v1',
+    title: 'Aniversário 3 Anos',
+    client: 'Cobertura Infantil',
+    category: 'Vídeos',
+    imageUrl: getDriveVideoThumb('1LY-AqlwsHp9QeyypprrWCqRavgE2G_hJ'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1LY-AqlwsHp9QeyypprrWCqRavgE2G_hJ'),
+  },
+  {
+    id: 'v2',
+    title: 'Aniversário 18 Anos',
+    client: 'Cobertura de Evento',
+    category: 'Vídeos',
+    imageUrl: getDriveVideoThumb('1tThBmY11QOQAoZMw7_AYl3RTBre4gSoU'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1tThBmY11QOQAoZMw7_AYl3RTBre4gSoU'),
+  },
+  {
+    id: 'v3',
+    title: 'Casamento',
+    client: 'Filme de Casamento',
+    category: 'Vídeos',
+    imageUrl: getDriveVideoThumb('1RSY-fJjfuJ1o62ZKKXVHnJf2BcZWk0Af'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1RSY-fJjfuJ1o62ZKKXVHnJf2BcZWk0Af'),
+  },
+  {
+    id: 'v4',
+    title: 'Zanah Clipe',
+    client: 'Videoclipe Musical',
+    category: 'Vídeos',
+    imageUrl: getDriveVideoThumb('1-eTq720f9vnomUZ0caKHJPszvP5vzNip'),
+    mediaType: 'video',
+    mediaUrl: getDriveVideo('1-eTq720f9vnomUZ0caKHJPszvP5vzNip'),
   }
 ];
 
 export const CLIENTS: Client[] = [
   { id: 'c1', name: 'Sony Music', logoPlaceholder: 'SM' },
-  { id: 'c2', name: 'GR6 Explode', logoPlaceholder: 'GR6' },
+  { id: 'c2', name: 'Netflix', logoPlaceholder: 'NFLX' },
   { id: 'c3', name: 'Kondzilla', logoPlaceholder: 'KZ' },
-  { id: 'c4', name: "Love Funk", logoPlaceholder: 'LF' },
+  { id: 'c4', name: 'Red Bull', logoPlaceholder: 'RB' },
   { id: 'c5', name: 'Mainstreet', logoPlaceholder: 'MS' },
   { id: 'c6', name: 'ONErpm', logoPlaceholder: 'OR' },
 ];

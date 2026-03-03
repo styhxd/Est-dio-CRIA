@@ -26,7 +26,7 @@ function App() {
             animate={{ opacity: 1 }} 
             exit={{ opacity: 0 }}
           >
-            <Hero />
+            <Hero onNavigate={setCurrentPage} />
             <Clients />
           </motion.div>
         );
@@ -89,7 +89,7 @@ function App() {
             </motion.div>
         );
       default:
-        return <Hero />;
+        return <Hero onNavigate={setCurrentPage} />;
     }
   };
 

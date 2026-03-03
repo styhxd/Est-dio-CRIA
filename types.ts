@@ -15,16 +15,11 @@ export interface Service {
 
 export type ProjectCategory = 
   | 'All' 
-  | 'Trap'
-  | 'Funk'
-  | 'Hip Hop' 
-  | 'Pop' 
-  | 'Electronic' 
-  | 'Rock/Alt' 
-  | 'MPB' 
-  | 'Mix & Master' 
-  | 'Sound Design' 
-  | 'Podcasts';
+  | 'Animação 2D'
+  | 'Fotografia'
+  | 'Fotos Restauradas' 
+  | 'Música' 
+  | 'Vídeos';
 
 export interface Project {
   id: string;
@@ -32,6 +27,13 @@ export interface Project {
   client: string;
   category: ProjectCategory;
   imageUrl: string;
+  mediaType?: 'image' | 'video' | 'audio' | 'compare' | 'gallery' | 'music_release';
+  mediaUrl?: string; // For video or audio links
+  beforeImageUrl?: string; // For compare
+  afterImageUrl?: string; // For compare
+  galleryUrls?: string[]; // For gallery
+  spotifyUrl?: string;
+  youtubeUrl?: string;
 }
 
 export interface Client {

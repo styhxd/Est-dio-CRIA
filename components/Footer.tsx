@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-5">
             <h2 className="text-2xl font-display font-bold mb-4">ESTÚDIO<span className="text-primary-tech">CRIA</span></h2>
             <p className="text-gray-400 mb-6 leading-relaxed max-w-md text-sm">
-              Potencializamos artistas independentes e selos com produção musical de nível global. Do primeiro acorde ao lançamento nas plataformas digitais.
+              Potencializamos marcas e artistas com produção multimídia de nível global. Do roteiro à tela, do acorde ao streaming.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-layer flex items-center justify-center hover:bg-primary-tech hover:text-white transition-all text-gray-400">
@@ -41,10 +41,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-3 lg:col-start-7">
             <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Menu</h4>
             <ul className="space-y-3 text-gray-400 text-sm">
-              <li><a href="#" onClick={(e) => handleNav(e, 'services')} className="hover:text-primary-art transition-colors">Serviços de Áudio</a></li>
-              <li><a href="#" onClick={(e) => handleNav(e, 'portfolio')} className="hover:text-primary-art transition-colors">Discografia (Portfólio)</a></li>
+              <li><a href="#" onClick={(e) => handleNav(e, 'services')} className="hover:text-primary-art transition-colors">Serviços Multimídia</a></li>
+              <li><a href="#" onClick={(e) => handleNav(e, 'portfolio')} className="hover:text-primary-art transition-colors">Portfólio</a></li>
               <li><a href="#" onClick={(e) => handleNav(e, 'about')} className="hover:text-primary-art transition-colors">Sobre Nós</a></li>
-              <li><a href="#" onClick={(e) => handleNav(e, 'contact')} className="hover:text-primary-art transition-colors">Agendar Sessão</a></li>
+              <li><a href="#" onClick={(e) => handleNav(e, 'contact')} className="hover:text-primary-art transition-colors">Iniciar Projeto</a></li>
               <li><a href="#" onClick={(e) => handleNav(e, 'clube')} className="hover:text-primary-art transition-colors">Clube CRIA</a></li>
             </ul>
           </div>
@@ -61,7 +61,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         <div className="pt-8 border-t border-white/5 text-center text-xs text-gray-600">
-          <p>© 2024 Estúdio CRIA. Produção Musical & Áudio.</p>
+          <p>© 2024 Estúdio CRIA. Produção Audiovisual & Design.</p>
         </div>
       </div>
     </footer>

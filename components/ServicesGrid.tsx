@@ -1,70 +1,40 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SERVICES } from '../constants';
-import { Service } from '../types';
-
-const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, index }) => {
-  const highlightClass = {
-    tech: 'group-hover:text-primary-tech group-hover:border-primary-tech/50',
-    art: 'group-hover:text-primary-art group-hover:border-primary-art/50',
-    cyan: 'group-hover:text-accent-cyan group-hover:border-accent-cyan/50',
-  }[service.highlightColor];
-
-  const bgHighlight = {
-    tech: 'group-hover:bg-primary-tech/5',
-    art: 'group-hover:bg-primary-art/5',
-    cyan: 'group-hover:bg-accent-cyan/5',
-  }[service.highlightColor];
-
-  return (
-    <motion.div
-      id={service.id}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      viewport={{ once: true }}
-      className="group relative p-8 bg-layer border border-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 scroll-mt-32 h-full flex flex-col"
-    >
-      <div className={`absolute inset-0 transition-colors duration-500 ${bgHighlight}`}></div>
-      
-      <div className="relative z-10 flex-grow">
-        <div className={`mb-6 inline-flex p-3 rounded-lg bg-white/5 border border-white/10 transition-colors duration-500 ${highlightClass}`}>
-          <service.icon size={28} />
-        </div>
-        
-        <h3 className="text-xl md:text-2xl font-display font-bold mb-3">{service.title}</h3>
-        <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
-      </div>
-    </motion.div>
-  );
-};
 
 const ServicesGrid: React.FC = () => {
   return (
-    <section id="services" className="py-24 bg-obsidian scroll-mt-28">
+    <section id="services" className="py-24 bg-layer scroll-mt-20">
       <div className="container mx-auto px-6">
         
-        {/* Updated grid for 8 items: 1 column mobile, 2 columns tablet, 4 columns desktop */}
-        {/* Grid moved to top to show services immediately */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-fr mb-16">
-          {SERVICES.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
-          ))}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-primary-tech font-bold tracking-widest text-sm uppercase mb-3 block">Nossos Serviços</span>
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Soluções Completas em Multimídia</h2>
+          <p className="text-gray-400 text-lg">
+            Oferecemos uma gama completa de serviços para atender todas as necessidades do seu projeto, com excelência e profissionalismo.
+          </p>
         </div>
 
-        {/* Text moved to bottom as per user request */}
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto border-t border-white/5 pt-12"
-        >
-          <span className="text-primary-tech font-bold tracking-wider uppercase text-sm mb-3 block">Sua Carreira 360º</span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Tudo O Que Sua Música Precisa</h2>
-          <p className="text-gray-400 text-lg">
-            Da composição à capa do álbum, do upload no Spotify à estratégia de marketing. Centralize sua carreira artística no Estúdio CRIA e foque no que importa: sua música.
-          </p>
-        </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {SERVICES.map((service, index) => (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-obsidian border border-white/10 rounded-xl p-8 hover:border-primary-tech/50 transition-colors group"
+            >
+              <div className={`w-14 h-14 rounded-lg bg-white/5 flex items-center justify-center mb-6 text-primary-${service.highlightColor} group-hover:scale-110 transition-transform`}>
+                <service.icon size={28} />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
+              <p className="text-gray-400 leading-relaxed text-sm">
+                {service.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
 
       </div>
     </section>
