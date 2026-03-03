@@ -105,7 +105,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
         {/* Masonry-ish Grid */}
         <motion.div 
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6"
         >
             <AnimatePresence mode='popLayout'>
                 {filteredProjects.map((project) => (
@@ -122,15 +122,21 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                             setCompareSliderPos(50);
                             setMediaError(false);
                         }}
-                        className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer bg-layer border border-white/5"
+                        className="group relative rounded-xl overflow-hidden cursor-pointer bg-layer border border-white/5 break-inside-avoid"
                     >
                         <img 
                             src={project.imageUrl} 
                             alt={project.title} 
                             referrerPolicy="no-referrer"
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                             onContextMenu={(e) => e.preventDefault()}
                             draggable={false}
+                            onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                if (!target.src.includes('unsplash')) {
+                                    target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop';
+                                }
+                            }}
                         />
                         
                         {/* Media Type Icon */}
@@ -191,20 +197,23 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
 
                         {selectedProject.mediaType === 'video' && selectedProject.mediaUrl && (
                             mediaError ? (
-                                <iframe 
-                                    src={getFallbackUrl(selectedProject.mediaUrl)} 
-                                    className="w-full h-full border-0 relative z-30" 
-                                    allow="autoplay"
-                                    allowFullScreen
-                                ></iframe>
+                                <div className="w-full max-w-4xl aspect-video relative z-30 rounded-xl overflow-hidden shadow-2xl">
+                                    <iframe 
+                                        src={getFallbackUrl(selectedProject.mediaUrl)} 
+                                        className="absolute inset-0 w-full h-full border-0" 
+                                        allow="autoplay"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
                             ) : (
                                 <video 
                                     src={selectedProject.mediaUrl} 
+                                    poster={selectedProject.imageUrl}
                                     controls 
                                     autoPlay 
                                     controlsList="nodownload nofullscreen noremoteplayback"
                                     disablePictureInPicture
-                                    className="w-full h-full object-contain relative z-30" 
+                                    className="w-full h-full max-h-[80vh] object-contain relative z-30" 
                                     onContextMenu={(e) => e.preventDefault()}
                                     onError={() => setMediaError(true)}
                                 />
@@ -217,7 +226,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                                 {mediaError ? (
                                     <iframe 
                                         src={getFallbackUrl(selectedProject.mediaUrl)} 
-                                        className="w-full max-w-md h-24 border-0 rounded-xl" 
+                                        className="w-full max-w-md h-32 border-0 rounded-xl relative z-30" 
                                         allow="autoplay"
                                     ></iframe>
                                 ) : (
@@ -235,36 +244,38 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                         )}
 
                         {selectedProject.mediaType === 'image' && (
-                            <img 
-                                src={selectedProject.mediaUrl || selectedProject.imageUrl} 
-                                alt={selectedProject.title} 
-                                referrerPolicy="no-referrer" 
-                                className="w-full h-full object-contain relative z-30" 
-                                draggable={false}
-                            />
+                            <div className="w-full h-full max-h-[80vh] flex items-center justify-center p-4">
+                                <img 
+                                    src={selectedProject.mediaUrl || selectedProject.imageUrl} 
+                                    alt={selectedProject.title} 
+                                    referrerPolicy="no-referrer" 
+                                    className="max-w-full max-h-[80vh] w-auto h-auto object-contain shadow-2xl rounded-xl relative z-30" 
+                                    draggable={false}
+                                />
+                            </div>
                         )}
 
                         {selectedProject.mediaType === 'gallery' && selectedProject.galleryUrls && (
-                            <div className="w-full h-full relative flex items-center justify-center group z-30">
+                            <div className="w-full h-full max-h-[80vh] relative flex items-center justify-center group z-30 p-4">
                                 <img 
                                     src={selectedProject.galleryUrls[galleryIndex]} 
                                     alt={`${selectedProject.title} - ${galleryIndex + 1}`} 
                                     referrerPolicy="no-referrer" 
-                                    className="w-full h-full object-contain" 
+                                    className="max-w-full max-h-[80vh] w-auto h-auto object-contain shadow-2xl rounded-xl" 
                                     draggable={false}
                                 />
-                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm">
+                                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm">
                                     {galleryIndex + 1} / {selectedProject.galleryUrls.length}
                                 </div>
                                 <button 
                                     onClick={(e) => { e.stopPropagation(); setGalleryIndex(prev => prev > 0 ? prev - 1 : selectedProject.galleryUrls!.length - 1); }}
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="absolute left-8 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                                 >
                                     <ChevronLeft size={24} />
                                 </button>
                                 <button 
                                     onClick={(e) => { e.stopPropagation(); setGalleryIndex(prev => prev < selectedProject.galleryUrls!.length - 1 ? prev + 1 : 0); }}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="absolute right-8 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                                 >
                                     <ChevronRight size={24} />
                                 </button>
@@ -272,29 +283,37 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                         )}
 
                         {selectedProject.mediaType === 'compare' && selectedProject.beforeImageUrl && selectedProject.afterImageUrl && (
-                            <div 
-                                ref={compareRef}
-                                className="w-full h-full relative cursor-ew-resize select-none z-30 flex items-center justify-center"
-                                onMouseMove={handleCompareMove}
-                                onTouchMove={handleCompareMove}
-                            >
-                                <img src={selectedProject.afterImageUrl} alt="After" className="absolute inset-0 w-full h-full object-contain" draggable={false} referrerPolicy="no-referrer" />
+                            <div className="w-full h-full flex items-center justify-center p-4">
                                 <div 
-                                    className="absolute inset-0 overflow-hidden"
-                                    style={{ width: `${compareSliderPos}%` }}
+                                    ref={compareRef}
+                                    className="relative inline-block max-w-full max-h-[80vh] cursor-ew-resize select-none z-30 shadow-2xl rounded-xl overflow-hidden"
+                                    onMouseMove={handleCompareMove}
+                                    onTouchMove={handleCompareMove}
                                 >
-                                    <img src={selectedProject.beforeImageUrl} alt="Before" className="absolute inset-0 w-full h-full object-contain" style={{ width: '100vw', maxWidth: '100%' }} draggable={false} referrerPolicy="no-referrer" />
-                                </div>
-                                <div 
-                                    className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize flex items-center justify-center"
-                                    style={{ left: `${compareSliderPos}%`, transform: 'translateX(-50%)' }}
-                                >
-                                    <div className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
-                                        <SplitSquareHorizontal size={16} className="text-black" />
+                                    {/* After Image (Bottom) */}
+                                    <img src={selectedProject.afterImageUrl} alt="After" className="block max-w-full max-h-[80vh] w-auto h-auto pointer-events-none" draggable={false} referrerPolicy="no-referrer" />
+                                    
+                                    {/* Before Image (Top, Clipped) */}
+                                    <img 
+                                        src={selectedProject.beforeImageUrl} 
+                                        alt="Before" 
+                                        className="absolute top-0 left-0 w-full h-full object-fill pointer-events-none" 
+                                        style={{ clipPath: `inset(0 ${100 - compareSliderPos}% 0 0)` }} 
+                                        draggable={false} 
+                                        referrerPolicy="no-referrer" 
+                                    />
+                                    
+                                    <div 
+                                        className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize flex items-center justify-center pointer-events-none"
+                                        style={{ left: `${compareSliderPos}%`, transform: 'translateX(-50%)' }}
+                                    >
+                                        <div className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+                                            <SplitSquareHorizontal size={16} className="text-black" />
+                                        </div>
                                     </div>
+                                    <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-md text-white text-xs font-bold uppercase tracking-wider pointer-events-none">Original</div>
+                                    <div className="absolute top-4 right-4 bg-primary-tech/80 backdrop-blur-md px-3 py-1 rounded-md text-white text-xs font-bold uppercase tracking-wider pointer-events-none">Restaurada</div>
                                 </div>
-                                <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-md text-white text-xs font-bold uppercase tracking-wider">Original</div>
-                                <div className="absolute top-4 right-4 bg-primary-tech/80 backdrop-blur-md px-3 py-1 rounded-md text-white text-xs font-bold uppercase tracking-wider">Restaurada</div>
                             </div>
                         )}
 
@@ -318,15 +337,18 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                                 <div className="w-full md:w-1/2 h-full flex items-center justify-center">
                                     {selectedProject.mediaUrl ? (
                                         mediaError ? (
-                                            <iframe 
-                                                src={getFallbackUrl(selectedProject.mediaUrl)} 
-                                                className="w-full rounded-xl shadow-2xl min-h-[300px] border-0 relative z-30" 
-                                                allow="autoplay"
-                                                allowFullScreen
-                                            ></iframe>
+                                            <div className="w-full aspect-video relative z-30 rounded-xl overflow-hidden shadow-2xl">
+                                                <iframe 
+                                                    src={getFallbackUrl(selectedProject.mediaUrl)} 
+                                                    className="absolute inset-0 w-full h-full border-0" 
+                                                    allow="autoplay"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
                                         ) : (
                                             <video 
                                                 src={selectedProject.mediaUrl} 
+                                                poster={selectedProject.imageUrl}
                                                 controls 
                                                 autoPlay 
                                                 controlsList="nodownload nofullscreen noremoteplayback"

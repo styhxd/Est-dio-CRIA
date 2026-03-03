@@ -152,8 +152,8 @@ export const SERVICES: Service[] = [
   }
 ];
 
-const getDriveImage = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w2500-h2500`;
-const getDriveVideoThumb = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w800-h800`;
+const getDriveImage = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w2000`;
+const getDriveVideoThumb = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w800`;
 const getDriveVideo = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
 const getDriveAudio = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
 
