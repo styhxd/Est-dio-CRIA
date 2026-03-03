@@ -137,6 +137,10 @@ const Portfolio: React.FC<PortfolioProps> = ({ activeCategory, setActiveCategory
                                     e.currentTarget.pause();
                                     e.currentTarget.currentTime = 0;
                                 }}
+                                onError={(e) => {
+                                    const target = e.target as HTMLVideoElement;
+                                    target.poster = project.imageUrl;
+                                }}
                             />
                         ) : (
                             <img 

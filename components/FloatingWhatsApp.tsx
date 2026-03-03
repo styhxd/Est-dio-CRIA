@@ -7,7 +7,7 @@ const FloatingWhatsApp: React.FC = () => {
   
   // Format: Country Code + Area Code + Number (No special chars)
   const phoneNumber = "5511944677759";
-  const message = "Olá! Vim pelo site do Estúdio CRIA e gostaria de agendar uma gravação/produção.";
+  const message = "Olá! Vim pelo site do Estúdio CRIA e gostaria de falar sobre um projeto.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   // Show the engaging bubble after 3 minutes (true easter egg for super engaged users)
@@ -40,11 +40,11 @@ const FloatingWhatsApp: React.FC = () => {
             <div className="flex flex-col gap-1">
                 <span className="text-xs font-bold text-green-600 uppercase tracking-wider flex items-center gap-1">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    Engenheiro Online
+                    Online Agora
                 </span>
                 <p className="text-sm font-medium leading-relaxed text-gray-800">
-                   Quer gravar seu som? <br/>
-                   <span className="font-bold text-primary-tech">Vamos agendar seu horário.</span> 🎙️
+                   Tem uma ideia incrível? <br/>
+                   <span className="font-bold text-primary-tech">Vamos tirar do papel hoje.</span> 🚀
                 </p>
             </div>
             
@@ -68,11 +68,6 @@ const FloatingWhatsApp: React.FC = () => {
       >
         <div className="relative bg-[#25D366] text-white p-4 rounded-full shadow-[0_0_30px_rgba(37,211,102,0.4)] group-hover:shadow-[0_0_50px_rgba(37,211,102,0.6)] transition-shadow duration-500">
           <MessageCircle size={32} fill="white" className="text-white" />
-          
-          {/* Notification Badge */}
-          <div className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-obsidian animate-bounce shadow-sm">
-            1
-          </div>
           
           {/* Radar/Pulse Ring */}
           <div className="absolute inset-0 rounded-full border-2 border-[#25D366] opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>

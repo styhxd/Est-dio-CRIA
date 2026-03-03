@@ -124,8 +124,8 @@ const Contact: React.FC = () => {
                 <div className="text-primary-art mb-4"><MapPin size={32} /></div>
                 <h4 className="font-bold text-xl mb-2">Estúdio Principal</h4>
                 <p className="text-gray-400 text-sm mb-4">
-                  Rua da Criação, 440 - Vila Madalena<br/>
-                  São Paulo - SP, Brasil
+                  R. Buíque, 122 - Vila Romanopolis<br/>
+                  Ferraz de Vasconcelos - SP, 08500-300
                 </p>
                 <a href="#" onClick={(e) => e.preventDefault()} className="text-xs font-bold text-white border-b border-primary-art/50 hover:text-primary-art transition-colors pb-0.5 cursor-pointer">Ver no Mapa</a>
               </div>
