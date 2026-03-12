@@ -2,7 +2,7 @@ import { LucideIcon } from 'lucide-react';
 
 export type ServiceHighlight = 'tech' | 'art' | 'cyan';
 
-export type PageView = 'home' | 'about' | 'services' | 'portfolio' | 'contact';
+export type PageView = 'home' | 'about' | 'services' | 'portfolio' | 'contact' | 'terms' | 'privacy' | 'copyright';
 
 export interface Service {
   id: string;

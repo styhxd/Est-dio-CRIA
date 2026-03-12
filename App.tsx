@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import About from './components/About';
 import Contact from './components/Contact';
+import LegalPage from './components/LegalPage';
 import { ProjectCategory, PageView } from './types';
 
 function App() {
@@ -74,6 +75,20 @@ function App() {
             className="pt-20"
           >
             <Contact />
+          </motion.div>
+        );
+      case 'terms':
+      case 'privacy':
+      case 'copyright':
+        return (
+          <motion.div 
+            key={currentPage}
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }}
+            className="pt-20"
+          >
+            <LegalPage page={currentPage} />
           </motion.div>
         );
       default:

@@ -21,10 +21,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Brand & About */}
           <div className="lg:col-span-5">
             <img 
-              src="https://drive.google.com/uc?export=view&id=1QVsEJ_GoV1xoVSKeKExSkS-CZJ68tw4w" 
+              src="/logo.svg" 
               alt="Estúdio CRIA" 
-              className="h-10 w-auto object-contain mb-6"
-              referrerPolicy="no-referrer"
+              className="h-16 md:h-20 w-auto object-contain mb-6"
             />
             <p className="text-gray-400 mb-6 leading-relaxed max-w-md text-sm">
               Potencializamos marcas e artistas com produção multimídia de nível global. Do roteiro à tela, do acorde ao streaming.
@@ -57,9 +56,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-3">
             <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Legal</h4>
             <ul className="space-y-3 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Termos de Uso</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Política de Cancelamento</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Copyright</a></li>
+                <li><a href="#" onClick={(e) => handleNav(e, 'terms')} className="hover:text-white transition-colors">Termos de Uso</a></li>
+                <li><a href="#" onClick={(e) => handleNav(e, 'privacy')} className="hover:text-white transition-colors">Política de Cancelamento</a></li>
+                <li><a href="#" onClick={(e) => handleNav(e, 'copyright')} className="hover:text-white transition-colors">Copyright</a></li>
             </ul>
           </div>
         </div>
