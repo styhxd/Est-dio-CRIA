@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
           <img 
             src="/logo.svg" 
             alt="Estúdio CRIA" 
-            className="h-12 md:h-16 w-auto object-contain"
+            className="h-14 md:h-20 w-auto object-contain"
           />
         </button>
 

@@ -23,7 +23,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <img 
               src="/logo.svg" 
               alt="Estúdio CRIA" 
-              className="h-16 md:h-20 w-auto object-contain mb-6"
+              className="h-20 md:h-28 w-auto object-contain mb-6"
             />
             <p className="text-gray-400 mb-6 leading-relaxed max-w-md text-sm">
               Potencializamos marcas e artistas com produção multimídia de nível global. Do roteiro à tela, do acorde ao streaming.

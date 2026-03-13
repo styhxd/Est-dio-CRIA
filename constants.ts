@@ -234,8 +234,8 @@ export const PROJECTS: Project[] = [
   // 6. Música
   {
     id: 'm1',
-    title: 'Rima Leste - Resenha',
-    client: 'Produção Musical',
+    title: 'Produção Musical - Resenha',
+    client: 'Rima Leste',
     category: 'Música',
     imageUrl: getDriveImage('1e4a-AiCnwEALJMcGdgDd1uiQWRCZIfmx'),
     mediaType: 'music_release',
@@ -330,8 +330,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'v4',
-    title: 'Zanah Clipe',
-    client: 'Videoclipe Musical',
+    title: 'Videoclipe (Lei Paulo Gustavo)',
+    client: 'Produção Audiovisual',
     category: 'Vídeos',
     imageUrl: getDriveVideoThumb('1-eTq720f9vnomUZ0caKHJPszvP5vzNip'),
     mediaType: 'video',
@@ -340,8 +340,10 @@ export const PROJECTS: Project[] = [
 ];
 
 export const CLIENTS: Client[] = [
-  { id: 'c1', name: 'Editora Elfos', logoPlaceholder: 'EE' },
-  { id: 'c2', name: 'Prêmio Curta Suzano 2018 (Melhor Filme (Júri Popular): GELEIA DE JABUTICABA', logoPlaceholder: 'CS' },
-  { id: 'c3', name: 'Música no Spotify (Resenha - Rima Leste)', logoPlaceholder: 'SP' },
-  { id: 'c4', name: 'Clipe da Zanah', logoPlaceholder: 'ZN' },
+  { id: 'c1', name: 'Zanah Dias Cantora', logoPlaceholder: 'ZD' },
+  { id: 'c2', name: 'Dalgs Cantor', logoPlaceholder: 'DC' },
+  { id: 'c3', name: 'DJ BLJ', logoPlaceholder: 'BLJ' },
+  { id: 'c4', name: 'Videoclipe (Lei Paulo Gustavo)', logoPlaceholder: 'PG' },
+  { id: 'c5', name: 'Prêmio Curta Suzano 2018 (Melhor Filme (Júri Popular): GELEIA DE JABUTICABA', logoPlaceholder: 'CS' },
+  { id: 'c6', name: 'Editora Elfos', logoPlaceholder: 'EE' },
 ];

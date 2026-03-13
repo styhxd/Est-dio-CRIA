@@ -57,6 +57,7 @@
       /* Custom scrollbar for that "Tech" feel */
       ::-webkit-scrollbar {
         width: 8px;
+        height: 8px;
       }
       ::-webkit-scrollbar-track {
         background: #050505;
@@ -67,6 +68,15 @@
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #7c3aed;
+      }
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
       }
     </style>
   <script type="importmap">
