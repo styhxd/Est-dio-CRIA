@@ -18,8 +18,13 @@ const Clients: React.FC = () => {
           {CLIENTS.map((client) => (
             <div 
               key={client.id} 
-              className="group p-6 md:p-8 rounded-2xl bg-obsidian/50 border border-white/10 hover:border-primary-tech/50 hover:bg-white/5 transition-all duration-300 flex items-center justify-center text-center min-h-[120px] md:min-h-[140px] shadow-lg hover:shadow-primary-tech/10 w-full sm:w-[260px] lg:w-[300px]"
+              className="group p-6 md:p-8 rounded-2xl bg-obsidian/50 border border-white/10 hover:border-primary-tech/50 hover:bg-white/5 transition-all duration-300 flex flex-col items-center justify-center text-center min-h-[120px] md:min-h-[140px] shadow-lg hover:shadow-primary-tech/10 w-full sm:w-[260px] lg:w-[300px]"
             >
+              {client.role && (
+                <span className="text-xs text-primary-tech uppercase tracking-wider font-semibold mb-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                  {client.role}
+                </span>
+              )}
               <h3 className="text-sm md:text-base font-display font-bold text-gray-300 group-hover:text-white transition-colors leading-relaxed">
                 {client.name}
               </h3>

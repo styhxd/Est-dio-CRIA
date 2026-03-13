@@ -340,10 +340,10 @@ export const PROJECTS: Project[] = [
 ];
 
 export const CLIENTS: Client[] = [
-  { id: 'c1', name: 'Zanah Dias Cantora', logoPlaceholder: 'ZD' },
-  { id: 'c2', name: 'Dalgs Cantor', logoPlaceholder: 'DC' },
-  { id: 'c3', name: 'DJ BLJ', logoPlaceholder: 'BLJ' },
-  { id: 'c4', name: 'Videoclipe (Lei Paulo Gustavo)', logoPlaceholder: 'PG' },
-  { id: 'c5', name: 'Prêmio Curta Suzano 2018 (Melhor Filme (Júri Popular): GELEIA DE JABUTICABA', logoPlaceholder: 'CS' },
-  { id: 'c6', name: 'Editora Elfos', logoPlaceholder: 'EE' },
+  { id: 'c1', role: 'Cantora', name: 'Zanah Dias', logoPlaceholder: 'ZD' },
+  { id: 'c2', role: 'Cantor', name: 'Dalgs', logoPlaceholder: 'DC' },
+  { id: 'c3', role: 'DJ', name: 'BLJ', logoPlaceholder: 'BLJ' },
+  { id: 'c4', role: 'Produção Audiovisual', name: 'Videoclipe (Lei Paulo Gustavo)', logoPlaceholder: 'PG' },
+  { id: 'c5', role: 'Prêmio Curta Suzano 2018', name: 'Geleia de Jabuticaba', logoPlaceholder: 'CS' },
+  { id: 'c6', role: 'Editora', name: 'Elfos', logoPlaceholder: 'EE' },
 ];
