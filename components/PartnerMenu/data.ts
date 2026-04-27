@@ -1,0 +1,36 @@
+import { PartnerConfig } from './types';
+
+// O site principal da Holding
+export const holdingData: PartnerConfig = {
+  id: 'cria-prod',
+  name: 'CRIA PRODUTORA',
+  description: 'Holding & Produção Executiva',
+  url: 'https://criaprod.com.br',
+  logoPath: '/logo-cria-prod.svg',
+  isMain: true,
+};
+
+// Os parceiros do ecossistema
+export const partnersData: PartnerConfig[] = [
+  {
+    id: 'styh',
+    name: 'STYH GAMES',
+    description: 'Desenvolvimento de jogos e experiências imersivas.',
+    url: 'https://styh.com.br',
+    logoPath: '/logo-styh.svg',
+  },
+  {
+    id: 'pinus',
+    name: 'PINUS DEV',
+    description: 'Engenharia de software e aplicativos de alta performance.',
+    url: 'https://pinusdev.com.br',
+    logoPath: '/logo-pinus.svg',
+  },
+  {
+    id: 'ilustre',
+    name: 'ILUSTRE DESIGN',
+    description: 'Design estratégico, identidade visual e comunicação.',
+    url: 'https://ilustredesign.com.br',
+    logoPath: '/logo-ilustre.svg',
+  }
+];

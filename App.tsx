@@ -7,6 +7,7 @@ import Portfolio from './components/Portfolio';
 import Clients from './components/Clients';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import PartnerMenu from './components/PartnerMenu';
 import About from './components/About';
 import Contact from './components/Contact';
 import LegalPage from './components/LegalPage';
@@ -112,6 +113,7 @@ function App() {
       
       <Footer onNavigate={setCurrentPage} />
       <FloatingWhatsApp />
+      <PartnerMenu />
     </main>
   );
 }
