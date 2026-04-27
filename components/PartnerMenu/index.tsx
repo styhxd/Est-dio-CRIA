@@ -81,7 +81,7 @@ const PartnerMenu: React.FC = () => {
   );
 
   return (
-    <div className="fixed bottom-8 right-8 z-[9999] font-sans flex flex-col items-end" ref={menuRef}>
+    <div className="fixed bottom-8 right-8 z-[9999] font-sans flex flex-col items-end pointer-events-none" ref={menuRef}>
       
       {/* Menu / Popup */}
       <div 
@@ -120,7 +120,7 @@ const PartnerMenu: React.FC = () => {
       {/* FAB Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`group relative flex items-center justify-center w-16 h-16 bg-[#030303] border-2 transition-all duration-500 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-black
+        className={`pointer-events-auto group relative flex items-center justify-center w-16 h-16 bg-[#030303] border-2 transition-all duration-500 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-black
           ${isOpen ? 'border-white/50 shadow-[0_0_30px_rgba(255,255,255,0.2)]' : 'border-white/20 hover:border-white/60 hover:bg-[#0a0a0a] shadow-[0_0_20px_rgba(0,0,0,0.8)] hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]'}
         `}
         aria-label="Abrir Ecossistema"
